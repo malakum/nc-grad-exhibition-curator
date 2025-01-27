@@ -22,13 +22,13 @@ async function fetchDepartments(){
       const response1 = await axios.get(url+`/departments`); // Make GET request
      //console.log(response1.data);
       
-      const  getMuseumObjectDetail = response1.data.departments;
+      const  getMuseumDepartment = response1.data.departments;
       // museumObject = response1.data;
       
       //  console.log('package detail data');
-        console.log( getMuseumObjectDetail);
+        console.log( getMuseumDepartment);
       
-       return getMuseumObjectDetail;
+       return getMuseumDepartment;
       
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -72,6 +72,7 @@ async function fetchDepartments(){
      
       
        const getMuseumObjectDetail = response1.data;
+       console.log(getMuseumObjectDetail);
   
        return getMuseumObjectDetail;
       

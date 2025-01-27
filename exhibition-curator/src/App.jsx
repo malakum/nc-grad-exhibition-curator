@@ -6,12 +6,32 @@ import Header from '../components/Header'
 import MuseumDepartment from '../components/MuseumDepartment'
 import MuseumObjects from '../components/MuseumObjects'
 import MuseumObjectDetail from '../components/MuseumObjectDetail'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      {/* <div>
+<BrowserRouter>
+
+       <Header />
+
+<Routes>
+<Route path="/" element={<MuseumObjects />}></Route>
+<Route path="/departments" element={<MuseumDepartment />}></Route>
+<Route path="/objects" element ={<MuseumObjects />}></Route>
+<Route path="/objects/:objectID" element ={<MuseumObjectDetail />}></Route>
+<Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />
+</Routes>
+
+</BrowserRouter> */}
+
+{/* </div> */}
+
       <div>
         <Header/>
         <MuseumDepartment/>
