@@ -33,8 +33,10 @@ const MuseumObjects = () =>{
         {museumObjects.objectIDs.map((objectID, index) => (
             //  {museumObjects.objectIDs.slice(0, 10).map((objectID, index) => (
           <li key={index}>
-            Object ID: {objectID}
-            <MuseumObjectDetail/>
+            <p>Object ID: {objectID}</p>
+            
+
+            <MuseumObjectDetail objectID={objectID}/>
             {/* <MuseumObjectDetail(`${objectID}``)/> */}
             {/* Example Link for each object, assuming you want to link to each object detail page */}
             {/* <Link to={`/object/${objectID}`}>View Object</Link> */}

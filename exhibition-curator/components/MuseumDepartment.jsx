@@ -1,4 +1,6 @@
  import { fetchDepartments } from "../utils/api";
+
+ import { Link } from "react-router-dom";
  //import className from tailwindcss;
 
  
@@ -46,6 +48,11 @@ const MuseumDepartment = () =>{
                {department1.departmentId}
              <p>Department Id {department1.departmentId}</p>
              <p> department name {department1.displayName}</p>
+             
+             <Link
+                                         to={`/departmentId/${department1.departmentId}`}
+                                          > Link for Object Detail listing 
+                                    </Link>;
              </li>
           ))}
         </ul>

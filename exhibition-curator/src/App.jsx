@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from '../components/Header'
-import MuseumDepartment from '../components/MuseumDepartment'
-import MuseumObjects from '../components/MuseumObjects'
-import MuseumObjectDetail from '../components/MuseumObjectDetail'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import Header from '../components/Header';
+import MuseumDepartment from '../components/MuseumDepartment';
+import MuseumObjects from '../components/MuseumObjects';
+import MuseumObjectDetail from '../components/MuseumObjectDetail';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MuseumObjectsListing from '../components/MuseumObjectsListing';
 
 
 
@@ -15,29 +16,30 @@ function App() {
 
   return (
     <>
-      {/* <div>
+      <div>
 <BrowserRouter>
 
        <Header />
 
-<Routes>
-<Route path="/" element={<MuseumObjects />}></Route>
-<Route path="/departments" element={<MuseumDepartment />}></Route>
-<Route path="/objects" element ={<MuseumObjects />}></Route>
-<Route path="/objects/:objectID" element ={<MuseumObjectDetail />}></Route>
-<Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />
-</Routes>
+        <Routes>
+              <Route path="/" element={<MuseumObjects />}></Route>
+             <Route path="/departments" element={<MuseumDepartment />}></Route>
+             <Route path="/objects" element ={<MuseumObjects />}></Route>
+             <Route path="/departmentId" element ={<MuseumObjectsListing />}></Route>
+             <Route path="/departmentId/:departmentId" element ={<MuseumObjectsListing />}></Route>
+             <Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />
+        </Routes>
 
-</BrowserRouter> */}
+</BrowserRouter>
 
 {/* </div> */}
 
-      <div>
+      {/* <div>
         <Header/>
         <MuseumDepartment/>
-        <MuseumObjects/>
-        <MuseumObjectDetail/>
-        {/* <a href="https://vite.dev" target="_blank">
+        <MuseumObjectsListing/>
+        <MuseumObjects/> */}
+               {/* <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
