@@ -3,9 +3,9 @@ import {fetchMusObjectsListing} from "../utils/api";
 import { useParams } from "react-router-dom";
 import { BrowserRouter, Link } from "react-router-dom";
 
-//const MuseumObjectsListing = ({departmentId}) =>{
-    const MuseumObjectsListing = ({departmentId}) =>{
-        //  const departmentId =useParams(departmentId);
+
+    const MuseumObjectsListing = () =>{
+          const { departmentId } =useParams();
 
     const [museumObjectsListing, setMuseumObjectsListing] = useState(null);
     const [museumFacets,setMuseumFacets] = useState(null);
@@ -15,53 +15,97 @@ import { BrowserRouter, Link } from "react-router-dom";
     const [museumFacetEra,setMuseumFacetEra] =useState(null);
     const [museumFacetDepartment,setMuseumFacetDepartment] =useState(null);
     const [currentPageNo, setCurrentPageNo] = useState(1);
-    const [offestValue,setOffsetValue] = useState(20);
+    const [offsetValue,setOffsetValue] = useState(20);
+    const [selectedValueArtist, setSelectedValueArtist] = useState('');
+    const [selectedValueMaterial, setSelectedValueMaterial] = useState('');
+    const [selectedValueGeolocation, setSelectedValueGeolocation] = useState('');
+    const [selectedValueEra, setSelectedValueEra] = useState('');
+    const [selectedValueDepartment, setSelectedValueDepartment] = useState(1);
+
+    
 
     function onClickURL (url){ window.open(url,'_blank')};
 
+    const handleChangeArtist = (event) => {
+      setSelectedValueArtist(event.target.value);
+    };
+    const handleChangeMaterial = (event) => {
+      setSelectedValueMaterial(event.target.value);
+    };
+    const handleChangeGeolocation = (event) => {
+      setSelectedValueGeolocation(event.target.value);
+    };
+    const handleChangeEra = (event) => {
+      setSelectedValueEra(event.target.value);
+    };
+    const handleChangeDepartment = (event) => {
+      setSelectedValueDepartment(event.target.value);
+    };
    // let currentPageNo =1;
    // let offsetValue =20;
 
     const handlePreviousPage =()=>{
       if (currentPageNo<=1){
         setCurrentPageNo(currentPageNo);
+        setOffsetValue(20);
+    
       }
       else {
         setCurrentPageNo(currentPageNo-1);
+        
+        
       }
     };
 
     const handleNextPage = () => {
       setCurrentPageNo(currentPageNo+1);
+      
+       
+      
     };
 
     const handleCurrentPage = () =>{
       if (currentPageNo >1) {
-         //offsetValue = 20 +offsetValue;
-        // console.log(offsetValue);
+        
          setOffsetValue(20+((currentPageNo-1)*20));
       }
       else {
         setOffsetValue(20)
       };
-    }
+    };
+
+    const newPostHandler = (event) => {
+      setInput(event.target.value);
+     }
+
+
+    const postSubmitHandler = (evt) => {
+      if (input.length === 0) {
+          console.log("Nothing to search here");
+   
+      } else {
+          const newComment = {};
+           newComment['body'] = input;
+           console.log(newComment);
+         }
+       };
    
     if (departmentId){
         useEffect(() => {
-          fetchMusObjectsListing(departmentId,offestValue).then((dataFromApi) => {
+          fetchMusObjectsListing(departmentId,offsetValue).then((dataFromApi) => {
       //console.log('Museum object Detail from api'+dataFromApi);
         setMuseumObjectsListing(dataFromApi.results);
         setMuseumFacets(dataFromApi.facets);
       });
-    }, [departmentId,offestValue])}
+    }, [departmentId,offsetValue])}
 else {
          useEffect(() => {
-        fetchMusObjectsListing(1,offestValue).then((dataFromApi) => {
+        fetchMusObjectsListing(1,offsetValue).then((dataFromApi) => {
     //console.log('Museum object Detail from api'+dataFromApi);
       setMuseumObjectsListing(dataFromApi.results);
       setMuseumFacets(dataFromApi.facets);
     });
-  }, [offestValue]);
+  }, [offsetValue]);
 }
 
     
@@ -120,18 +164,52 @@ else {
       marginTop: '20px',
       
     }}>
+       
+
+            <h1>Interactive List</h1>
+ 
+  {/* <button onclick="addItem()">Add Item</button> */}
+            
     <p>Search : q </p>
-    <p> Artist/Culture : artist : {museumFacets[0].id}</p>
-    <p>Material : material : {museumFacets[1].id}</p>
-    <p>Geographic Location : geolocation : {museumFacets[2].id} </p>
-    <p>Date /era : era :{museumFacets[3].id}</p>
-    <p>Department : department: {museumFacets[4].id}</p>
+    <input type="text" id="searchText" placeholder="Enter searchitem..." />
+    <button onclick="searchButton()">search Item</button>
+   
+      <div>
+      <h4>Artist: {selectedValueArtist}</h4>
+      <select value={selectedValueArtist} onChange={handleChangeArtist}>
+        <option value="">Select an option</option>
+        <option value={museumFacets[0].values[0].id}>{museumFacets[0].values[0].id+"("+museumFacets[0].values[0].count+")"}</option>
+        <option value={museumFacets[0].values[1].id}>{museumFacets[0].values[1].id+"("+museumFacets[0].values[1].count+")"}</option>
+        <option value={museumFacets[0].values[1].id}>{museumFacets[0].values[2].id+"("+museumFacets[0].values[2].count+")"}</option>
+      </select> 
+      <h4>Material: {selectedValueMaterial}</h4>
+      <select value={selectedValueMaterial} onChange={handleChangeMaterial}>
+        <option value="">Select an option</option>
+        <option value={museumFacets[1].values[0].id}>{museumFacets[1].values[0].id+"("+museumFacets[1].values[0].count+")"}</option>
+        <option value={museumFacets[1].values[1].id}>{museumFacets[1].values[1].id+"("+museumFacets[1].values[1].count+")"}</option>
+        <option value={museumFacets[1].values[1].id}>{museumFacets[1].values[2].id+"("+museumFacets[1].values[2].count+")"}</option>
+      </select>
+     
+      <h4>Geolocation: {selectedValueGeolocation}</h4>
+      <select value={selectedValueGeolocation} onChange={handleChangeGeolocation}>
+        <option value="">Select an option</option>
+        <option value={museumFacets[2].values[0].id}>{museumFacets[2].values[0].id+"("+museumFacets[2].values[0].count+")"}</option>
+        <option value={museumFacets[2].values[1].id}>{museumFacets[2].values[1].id+"("+museumFacets[2].values[1].count+")"}</option>
+        <option value={museumFacets[2].values[1].id}>{museumFacets[2].values[2].id+"("+museumFacets[2].values[2].count+")"}</option>
+      </select>
+      <h4>Date /Era: {selectedValueEra}</h4>
+      <select value={selectedValueEra} onChange={handleChangeEra}>
+        <option value="">Select an option</option>
+        <option value={museumFacets[3].values[0].id}>{museumFacets[3].values[0].id+"("+museumFacets[3].values[0].count+")"}</option>
+        <option value={museumFacets[3].values[1].id}>{museumFacets[3].values[1].id+"("+museumFacets[3].values[1].count+")"}</option>
+        <option value={museumFacets[3].values[1].id}>{museumFacets[3].values[2].id+"("+museumFacets[3].values[2].count+")"}</option>
+      </select>
+      <button>Refresh Data </button>
+     
+    </div>
+    
     </section>
-        {/* //facets-id-artist ,label-Artist/culture,serchable -true values :[{object}]
-   //      id-material , label -Object Type /Material , searchable -true, values :[{object}]
-   //       id-geolocation, label-Geographic Location ,searchable -true values : [{object}]
-   //       id-era , label- Date /Era ,searchable :false , value :[{object}]
-   //       id -department , label -Department , searchable -false, values :[{object}] */}
+       
     <div style={{
       width: '800px',
       height: '300px',
