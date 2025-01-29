@@ -48,10 +48,11 @@ const MuseumDepartment = () =>{
                {department1.departmentId}
              <p>Department Id {department1.departmentId}</p>
              <p> department name {department1.displayName}</p>
-             
+            
              <Link
                                          to={`/departmentId/${department1.departmentId}`}
                                           > Link for Object Detail listing 
+                                           {/* <MuseumObjectListing departmentId={department1.departmentId}/> */}
                                     </Link>;
              </li>
           ))}

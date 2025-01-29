@@ -6,7 +6,7 @@ const museumApi = axios.create({
 
  
 //console.log('api data');
-console.log(museumApi);
+//console.log(museumApi);
 // export const   fetchDepartments = () =>{
 //     return museumApi
 //     .get("/departments")
@@ -20,13 +20,13 @@ async function fetchDepartments(){
     const url = `https://collectionapi.metmuseum.org/public/collection/v1`;
       try {
       const response1 = await axios.get(url+`/departments`); // Make GET request
-     //console.log(response1.data);
+    // console.log(response1.data);
       
       const  getMuseumDepartment = response1.data.departments;
       // museumObject = response1.data;
       
       //  console.log('package detail data');
-      //  console.log( getMuseumDepartment);
+       console.log( getMuseumDepartment);
       
        return getMuseumDepartment;
       
@@ -98,7 +98,7 @@ async function fetchDepartments(){
    //       id-era , label- Date /Era ,searchable :false , value :[{object}]
    //       id -department , label -Department , searchable -false, values :[{object}]
 
- async function fetchMusObjectsListing(departmentId){
+ async function fetchMusObjectsListing(departmentId,offsetValue){
     
   const url = `https://collectionapi.metmuseum.org/mothra/collectionlisting`;
     try {
@@ -109,15 +109,32 @@ async function fetchDepartments(){
       // if (q) query.push(`q=${q}`);
        const queryString = query.length ? `?${query.join("&")}` : "";
     
-          const response1 = await axios.get(url+`/search${queryString}&offset=20`); // Make GET request
+          const response1 = await axios.get(url+`/search${queryString}&offset=${offsetValue}`); // Make GET request
   // console.log(response1.data);
     
-     const getMusObjectsListing = response1.data.results;
-     const getSearchCriteria = response1.data.facets;
-       console.log('museum object listing');
-      console.log( getMusObjectsListing);
-      console.log('all search criteria');
-     // console.log(getSearchCriteria);
+     const getMusObjectsListing = response1.data;
+    //  const getSearchCriteria1 = response1.data.facets[0].id;
+    //  const getValue1 = response1.data.facets[0].values;
+    //  const getSearchCriteria2 = response1.data.facets[1].id;
+    //  const getvalue2 = response1.data.facets[1].values[1].id;
+    //  const getSearchCriteria3 = response1.data.facets[2].id;
+    //  const getSearchCriteria4 = response1.data.facets[3].id;
+    //  const getSearchCriteria5 = response1.data.facets[4].id;
+
+      //  console.log('museum object listing');
+      // console.log( getMusObjectsListing);
+      // console.log('all search criteria');
+      //console.log( getMusObjectsListing.results);
+      // console.log('Artist1 :'+getSearchCriteria1);
+      // console.log(getValue1);
+      // console.log('material2 :'+getSearchCriteria2);
+      // console.log(getvalue2);
+      // console.log('geolocation3 :'+getSearchCriteria3);
+      // console.log('era4 :'+getSearchCriteria4);
+      // console.log('department5 :'+getSearchCriteria5);
+      
+      
+      
     
      return getMusObjectsListing;
     
@@ -125,7 +142,7 @@ async function fetchDepartments(){
     console.error('Error fetching data:', error);
   }
 }
-fetchMusObjectsListing(1);
+fetchMusObjectsListing(6,40);
 
 
 
