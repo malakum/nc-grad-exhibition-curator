@@ -2,6 +2,7 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Header';
 import MuseumDepartment from '../components/MuseumDepartment';
 import MuseumObjects from '../components/MuseumObjects';
@@ -25,6 +26,7 @@ function App() {
               <Route path="/" element={<MuseumObjects />}></Route>
              <Route path="/departments" element={<MuseumDepartment />}></Route>
              <Route path="/objects" element ={<MuseumObjects />}></Route>
+             <Route path="/objects/:objectID" element ={<MuseumObjectDetail />}></Route>
              <Route path="/departmentId" element ={<MuseumObjectsListing />}></Route>
              <Route path="/departmentId/:departmentId" element ={<MuseumObjectsListing />}></Route>
              <Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />

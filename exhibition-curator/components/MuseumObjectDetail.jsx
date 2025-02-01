@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {fetchMusObjectDetail} from "../utils/api";
 import { useParams } from "react-router-dom";
-import { BrowserRouter, Link } from "react-router-dom";
 
-const MuseumObjectDetail = ({objectID}) =>{
+
+const MuseumObjectDetail = () =>{
 
     const [museumObjectDetail, setMuseumObjectDetail] = useState(null);
+    const { objectID } =useParams();   
 
     function onClickURL (url){ window.open(url,'_blank')};
    
@@ -30,22 +31,21 @@ const MuseumObjectDetail = ({objectID}) =>{
 
 
     
-     return (<div 
-      //style={{
-    //   width: '500px',
-    //   height: '200px',
-    //   overflowY: 'scroll' ,// Show scrollbar if content overflows
-    //   border: '1px solid black',
-    //   marginTop: '20px',
-    // }}
+     return (<div      
     > Object Detail
      <p>museum Id {museumObjectDetail.objectID}</p>
+     <div >
+          <img src={museumObjectDetail.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
+        </div>
      <p>museum department:{museumObjectDetail.department}</p>
      <p>museum Name: {museumObjectDetail.objectName}</p>
      <p>museum title :{museumObjectDetail.title}</p>
-     {/* <p>museum Artist AlphaSort {museumObjectDetail.artistAlphaSort}</p>
-     <p>museum Artist Nationality {museumObjectDetail.artistNationality}</p>
-     <p>museum Artist Gender {museumObjectDetail.artistGender}</p> */}
+     <p>museum Artist AlphaSort: {museumObjectDetail.artistAlphaSort}</p>
+     <p>museum Artist Nationality: {museumObjectDetail.artistNationality}</p>
+     <p>museum Artist Gender: {museumObjectDetail.artistGender}</p>
+     <p>museum Object Date : {museumObjectDetail.objectDate}</p>
+     <p>museum Object Begin Date: {museumObjectDetail.objectBeginDate}</p>
+     <p>museum Object End Date: {museumObjectDetail.objectEndDate}</p>
      <div onClick={() => onClickURL(museumObjectDetail.objectURL) }>
         ItemDeatilClick
         </div>
@@ -57,23 +57,7 @@ const MuseumObjectDetail = ({objectID}) =>{
           primary image
         </a>
        
-        <div >
-
-          <img src={museumObjectDetail.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
-        </div>
-        {/* <BrowserRouter>
-        <Link
-                                         to={museumObjectDetail.primaryImage}
-                                          > Link for article detail
-                                    </Link>
-                                    </BrowserRouter> */}
-        <p>museum Object Date : {museumObjectDetail.objectDate}</p>
-     <p>museum Object Begin Date: {museumObjectDetail.objectBeginDate}</p>
-     <p>museum Object End Date: {museumObjectDetail.objectEndDate}</p>
-        {/* <p>museum medium {museumObjectDetail.medium}</p>
-     <a href={museumObjectDetail.artistULAN_URL} target="_blank" rel="noopener noreferrer">
-          Visit ULAN Profile
-        </a> */}
+       
      </div>
      
     );

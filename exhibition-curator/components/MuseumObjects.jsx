@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import {fetchMusObjects} from "../utils/api";
 //import  Link  from 'react-router-dom' ;
 import MuseumObjectDetail from "./MuseumObjectDetail";
+import MuseumObjectCard from "./MuseumObjectCard";
 
 const MuseumObjects = () =>{
 
     const [museumObjects, setMuseumObjects] = useState(null);
+    const [geolocation, setGeolocation] = useState('a');
+    
 
   useEffect(() => {
-    fetchMusObjects(1,'sunflower',false).then((museumObjectsFromApi) => {
+    fetchMusObjects(1,'sunflower',false,geolocation).then((museumObjectsFromApi) => {
     console.log('taglist from api'+museumObjectsFromApi);
       setMuseumObjects(museumObjectsFromApi);
     });
@@ -20,7 +23,7 @@ const MuseumObjects = () =>{
 
     return ( <>
             
-         <h1> MuseumObjects</h1>
+         <h2> MuseumObjects</h2>
          <h3>Total Museum Objects: {museumObjects.total}</h3>
          <div style={{
       width: '500px',
@@ -36,10 +39,8 @@ const MuseumObjects = () =>{
             <p>Object ID: {objectID}</p>
             
 
-            <MuseumObjectDetail objectID={objectID}/>
-            {/* <MuseumObjectDetail(`${objectID}``)/> */}
-            {/* Example Link for each object, assuming you want to link to each object detail page */}
-            {/* <Link to={`/object/${objectID}`}>View Object</Link> */}
+            <MuseumObjectCard objectID={objectID}/>
+          
             </li>
         ))}
       </ul>

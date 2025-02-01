@@ -13,8 +13,8 @@
 const MuseumDepartment = () =>{
 
     const [museumDepartments, setMuseumDepartments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-   const [error, setError] = useState("");
+     const [isLoading, setIsLoading] = useState(true);
+     const [error, setError] = useState("");
 
      useEffect(() => {
     fetchDepartments()
@@ -34,31 +34,29 @@ const MuseumDepartment = () =>{
 
 
     return ( <>
-         <h1> Museumdepartment123</h1>
+         <h2> Metro Museum Department</h2>
             <div style={{
-      width: '500px',
-      height: '200px',
-       overflowY: 'scroll' ,// Show scrollbar if content overflows
-       border: '1px solid black',
-       marginTop: '20px',
-     }}>
-         <ul>
-   {museumDepartments.map((department1,index) => (
-            <li key={index}>
-               {department1.departmentId}
-             <p>Department Id {department1.departmentId}</p>
-             <p> department name {department1.displayName}</p>
-            
-             <Link
+                 width: '500px',
+                 height: '300px',
+                 overflowY: 'scroll' ,// Show scrollbar if content overflows
+                 border: '1px solid black',
+                 marginTop: '20px',
+                 }}>
+                <ul>
+                   {museumDepartments.map((department1,index) => (
+                    <li key={index}>
+                       {department1.departmentId}
+                        {/* <p>Department Id {department1.departmentId}</p> */}
+                       <p> department name {department1.displayName}</p>
+                       <Link
                                          to={`/departmentId/${department1.departmentId}`}
-                                          > Link for Object Detail listing 
-                                           {/* <MuseumObjectListing departmentId={department1.departmentId}/> */}
-                                    </Link>;
-             </li>
-          ))}
-        </ul>
-        </div>
-    </>)
+                                          > Link for Object Listing
+                                           </Link>;
+                    </li>
+                    ))}
+                 </ul>
+               </div>
+             </>)
 }
 export default MuseumDepartment;
 
