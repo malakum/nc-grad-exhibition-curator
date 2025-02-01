@@ -4,7 +4,7 @@ const Header = () =>{
     return ( <>
          <h1> Header : Exhibition Curator</h1>
          <div>
-         <button >Metro Museum
+         <button >Metro Museum Departments
         {/* <button onClick={() => onClickURL1("MuseumDepartments")}>Metro Museum</button> */}
         <Link
                                          to={`/departments/`}
@@ -13,10 +13,17 @@ const Header = () =>{
                                     </button>  
         </div>
         <div>
-         <button >European Art
+         <button >Metro Museum Objects
          <Link
                                          to={`/objects`}
                                           > Link for Museum objects
+                                    </Link>; </button>
+                                                               </div>
+                                                               <div>
+         <button >Home
+         <Link
+                                         to={`/`}
+                                          > Link for Home
                                     </Link>; </button>
                                                                </div>
     </>)

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {fetchMusObjectDetail} from "../utils/api";
 import { useParams } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 const MuseumObjectDetail = () =>{
@@ -33,7 +35,47 @@ const MuseumObjectDetail = () =>{
     
      return (<div      
     > Object Detail
-     <p>museum Id {museumObjectDetail.objectID}</p>
+    <Card>
+    
+  {museumObjectDetail.primaryImage && (
+    <Card.Img variant="top" src={museumObjectDetail.primaryImage} alt ="primaryImage" width="100px" height="100px"/>
+  )}
+  <Card.Body>
+    <Card.Title>{museumObjectDetail.title ? museumObjectDetail.title : "N/A"}</Card.Title>
+    <Card.Text>
+    <strong>Date: </strong>
+      {museumObjectDetail.objectDate ? museumObjectDetail.objectDate : "N/A"}
+      <br />
+      <strong>Classification: </strong>
+      {museumObjectDetail.classification ? museumObjectDetail.classification : "N/A"}
+      <br />
+      <strong>Medium: </strong>
+      {museumObjectDetail.medium ? museumObjectDetail.medium : "N/A"}
+      <br />
+      <br />
+      <strong>Artist: </strong>
+      {museumObjectDetail.artistDisplayName ? museumObjectDetail.artistDisplayName : "N/A"}
+      {museumObjectDetail.artistDisplayName && (
+        <>
+          &nbsp;
+          <a
+            href={museumObjectDetail?.artistWikidata_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
+            wiki
+          </a>
+        </>
+      )}
+      <br />
+      <strong>Credit Line: </strong>
+      {museumObjectDetail.creditLine ? museumObjectDetail.creditLine : "N/A"}
+      <br />
+      <strong>Dimensions: </strong>
+      {museumObjectDetail.dimensions ? museumObjectDetail.dimensions : "N/A"}
+      <br />
+      <br />
+     {/* <p>museum Id {museumObjectDetail.objectID}</p>
      <div >
           <img src={museumObjectDetail.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
         </div>
@@ -55,13 +97,24 @@ const MuseumObjectDetail = () =>{
         </a>
         <a href={museumObjectDetail.primaryImage} target="_blank" rel="noopener noreferrer">
           primary image
-        </a>
+        </a> */}
+        {/* <Button
+        variant={showAdded ? "primary" : "outline-primary"}
+        onClick={favouritesClicked}
+      >
+        {showAdded ? "+ Favourite (added)" : "+ Favourite"}
+      </Button> */}
+    </Card.Text>
+  </Card.Body>
+</Card>
        
        
      </div>
      
     );
   };
+
+  
   
 export default MuseumObjectDetail;
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {fetchMusObjectsListing, fetchMusObjectsListingExtraSearch} from "../utils/api";
+import {fetchMusObjectsListing} from "../utils/api";
 import { useParams } from "react-router-dom";
 import { BrowserRouter, Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 const MuseumObjectsListing = () =>{
@@ -168,19 +170,41 @@ const handleChangeEra = (event) => {
               <ul>
                  {museumObjectsListing.map((objectsListing, index) => (
                  <li key={index}>
-                    <div onClick={() => onClickURL(objectsListing.url) }>
+                  <Card>
+    
+    {objectsListing.image && (
+      <Card.Img variant="top" src={objectsListing.image} alt ="Image" width="100px" height="100px" />
+    )}
+    <Card.Body>
+      <Card.Title>{objectsListing.title ? objectsListing.title : "N/A"}</Card.Title>
+      <Card.Text>
+                    {/* <div onClick={() => onClickURL(objectsListing.url) }>
                      <img src={objectsListing.image} alt ="Image" width="100px" height="100px"/>
                      <button>ObjectListingUrl</button>
-                    </div>
-                    <p> Title: {objectsListing.title}</p>
-                    <p> Description: {objectsListing.description}</p>
+                    </div> */}
+                    {/* <p> Title: {objectsListing.title}</p> */}
+                    <strong>Date: </strong>
+      {objectsListing.objectDate ? objectsListing.objectDate : "N/A"}
+      <br />
+      <strong> Description: </strong>{objectsListing.description ?objectsListing.description : "N/A"}
+      <strong> Artist:</strong> {objectsListing.artist ? objectsListing.artist :"N/A"}
+      <strong> Culture:</strong> {objectsListing.culture ? objectsListing.culture : "N/A"}
+      <strong> Date: </strong>{objectsListing.date ? objectsListing.date :"N/A" }
+      <strong> Medium:</strong> {objectsListing.medium ? objectsListing.medium : "N/A"}
+      <strong> AccessionNumber:</strong> {objectsListing.accessionNumber ? objectsListing.accessionNumber :"N/A"}
+      <strong> GalleryInformation:</strong> {objectsListing.galleryInformation ? objectsListing.galleryInformation : "N/A"}
+                 
+                    {/* <p> Description: {objectsListing.description}</p>
                     <p> Artist: {objectsListing.artist}</p>
                     <p> Culture: {objectsListing.culture}</p>
                     <p> Date: {objectsListing.date}</p>
                     <p> Medium: {objectsListing.medium}</p>
                     <p> AccessionNumber: {objectsListing.accessionNumber}</p>
                     <p> GalleryInformation: {objectsListing.galleryInformation}</p>
-                    <p>-----------------------------------------</p>
+                    <p>-----------------------------------------</p> */}
+                    </Card.Text>
+  </Card.Body>
+</Card>
                   </li>
                   ))}
                </ul>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {fetchMusObjectDetail} from "../utils/api";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { BrowserRouter, Link } from "react-router-dom";
 
@@ -30,25 +32,37 @@ const MuseumObjectCard = ({objectID}) =>{
 
 
     
-     return (<div      
-    > Object Card
+     return (    
+    <>
     
-     <div >
-          <img src={museumObjectCard.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
-        </div>
-          <Link
-                                              to={`/objects/${objectID}`}
-                                               > Link for object detail
-                                                </Link>;
+     <Card>
+     <Card.Img
+        variant="top"
+       src ={museumObjectCard.primaryImageSmall
+        ? museumObjectCard.primaryImageSmall
+        : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="primaryImageImage" width="100px" height="100px"
+        //    src={museumObjectCard.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
+        />
+        
+        <Card.Body>
+    <Card.Title>{museumObjectCard.title ? museumObjectCard.title : "N/A"}</Card.Title>
+    <Card.Text>
          <p>museum Id {museumObjectCard.objectID}</p>
          <p>museum department:{museumObjectCard.department}</p>
          <p>museum Name: {museumObjectCard.objectName}</p>
-         <p>museum title :{museumObjectCard.title}</p>
-      
-     </div>
-     
-    );
+         <Link
+                                              to={`/objects/${objectID}`}
+                                               > Link for object detail
+                                                
+         </Link>
+    </Card.Text>
+  </Card.Body>
+</Card>
+</>
+     );   
+    
   };
+ 
   
 export default MuseumObjectCard;
 

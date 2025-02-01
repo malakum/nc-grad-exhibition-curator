@@ -25,13 +25,15 @@ const MuseumObjects = () =>{
             
          <h2> MuseumObjects</h2>
          <h3>Total Museum Objects: {museumObjects.total}</h3>
-         <div style={{
-      width: '500px',
-       height: '200px',
-       overflowY: 'scroll' ,// Show scrollbar if content overflows
-       border: '1px solid black',
-       marginTop: '20px',
-     }}>
+         <div 
+    //      style={{
+    //   width: '500px',
+    //    height: '200px',
+    //    overflowY: 'scroll' ,// Show scrollbar if content overflows
+    //    border: '1px solid black',
+    //    marginTop: '20px',
+    //  }}
+     >
       <ul>
         {museumObjects.objectIDs.map((objectID, index) => (
             //  {museumObjects.objectIDs.slice(0, 10).map((objectID, index) => (
