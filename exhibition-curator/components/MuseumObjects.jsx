@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {fetchMusObjects} from "../utils/api";
 //import  Link  from 'react-router-dom' ;
-import MuseumObjectDetail from "./MuseumObjectDetail";
 import MuseumObjectCard from "./MuseumObjectCard";
 
 const MuseumObjects = () =>{

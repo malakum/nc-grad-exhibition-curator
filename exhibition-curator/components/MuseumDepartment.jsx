@@ -35,13 +35,15 @@ const MuseumDepartment = () =>{
 
     return ( <>
          <h2> Metro Museum Department</h2>
-            <div style={{
-                 width: '500px',
-                 height: '300px',
-                 overflowY: 'scroll' ,// Show scrollbar if content overflows
-                 border: '1px solid black',
-                 marginTop: '20px',
-                 }}>
+            <div 
+            // style={{
+            //      width: '500px',
+            //      height: '300px',
+            //      overflowY: 'scroll' ,// Show scrollbar if content overflows
+            //      border: '1px solid black',
+            //      marginTop: '20px',
+            //      }}
+                 >
                 <ul>
                    {museumDepartments.map((department1,index) => (
                     <li key={index}>

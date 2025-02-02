@@ -2,24 +2,31 @@ import { Link } from "react-router-dom";
 
 const Header = () =>{
     return ( <>
-         <h1> Header : Exhibition Curator</h1>
+         <h1> Art Exhibition Curator</h1>
          <div>
          <button >Metro Museum Departments
-        {/* <button onClick={() => onClickURL1("MuseumDepartments")}>Metro Museum</button> */}
-        <Link
+         <Link
                                          to={`/departments/`}
                                           > Link for Metro Museum Departments
                                     </Link>;
                                     </button>  
         </div>
         <div>
-         <button >Metro Museum Objects
+         <button >Metro Museums Objects
          <Link
                                          to={`/objects`}
                                           > Link for Museum objects
                                     </Link>; </button>
+          </div>
+          <div>          
+            <button > Artic Artworks
+         <Link
+                                         to={`/artworks`}
+                                          > Link for Artic Artwork
+                                    </Link>; </button>
                                                                </div>
-                                                               <div>
+
+         <div>
          <button >Home
          <Link
                                          to={`/`}
