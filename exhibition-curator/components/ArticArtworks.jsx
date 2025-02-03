@@ -6,7 +6,6 @@ import  Row  from "react-bootstrap/Row";
  import Pagination from 'react-bootstrap/Pagination';
  import  Col  from "react-bootstrap/Col";
 
-//import  Link  from 'react-router-dom' ;
 
 
 const ArticArtworks = () =>{
@@ -16,15 +15,9 @@ const ArticArtworks = () =>{
     const limit = 10; // can't be more that 100 per page  
     let q ='cat';
     const PER_PAGE = 10;
-    //const router = useRouter();
-
-   // const [artworkList, setArtworkList] = useState([]);
+    
     const [page, setPage] = useState(1);
 
-    
-    // let finalQuery = router.asPath.split('?')[1];
-
-    // const {data,error} = useSWR(`https://collectionapi.metmuseum.org/public/collection/v1/search?${finalQuery}`);
 
     function previousPage(){
         if(page > 1){
@@ -37,7 +30,6 @@ const ArticArtworks = () =>{
             setPage(page=>page+1);
         }
     }
-   // const [geolocation, setGeolocation] = useState('a');
     
 
   useEffect(() => {
