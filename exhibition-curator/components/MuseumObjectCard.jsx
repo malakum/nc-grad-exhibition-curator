@@ -18,13 +18,9 @@ const MuseumObjectCard = ({objectID}) =>{
         setMuseumObjectCard(museumObjectDetailFromApi);
       });
     }, [objectID])}
-    else {useEffect(() => {
-      fetchMusObjectDetail(100).then((museumObjectDetailFromApi) => {
-      console.log('Museum object Detail from api'+museumObjectDetailFromApi);
-      console.log(JSON.stringify(museumObjectDetailFromApi));
-    setMuseumObjectCard(museumObjectDetailFromApi);
-  });
-}, [])}
+    else {
+      return(<p> Object Id is required...</p>)
+    }
     
     if (!museumObjectCard) {
       return <p>Loading...</p>;

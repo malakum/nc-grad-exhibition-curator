@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {fetchArticArtworks} from "../utils/api";
 import ArticArtworkCard from "./ArticArtworkCard";
+import  Card  from "react-bootstrap/Card";
+import  Row  from "react-bootstrap/Row";
+ import Pagination from 'react-bootstrap/Pagination';
+ import  Col  from "react-bootstrap/Col";
 
 //import  Link  from 'react-router-dom' ;
 
@@ -9,9 +13,30 @@ const ArticArtworks = () =>{
 
     const [artworks, setArtworks] = useState(null);
     const [searchItem,setSearchItem] = useState('cat');
-    const page =1;
     const limit = 10; // can't be more that 100 per page  
     let q ='cat';
+    const PER_PAGE = 10;
+    //const router = useRouter();
+
+   // const [artworkList, setArtworkList] = useState([]);
+    const [page, setPage] = useState(1);
+
+    
+    // let finalQuery = router.asPath.split('?')[1];
+
+    // const {data,error} = useSWR(`https://collectionapi.metmuseum.org/public/collection/v1/search?${finalQuery}`);
+
+    function previousPage(){
+        if(page > 1){
+            setPage(page=>page-1);
+        }
+    }
+
+    function nextPage(){
+        if(page<artworks.length){
+            setPage(page=>page+1);
+        }
+    }
    // const [geolocation, setGeolocation] = useState('a');
     
 
@@ -29,29 +54,22 @@ const ArticArtworks = () =>{
     return ( <>
             
          <h2> ArticArtworks</h2>
-         <h3>Total Artworks: {artworks.total}</h3>
-         <div 
-    //      style={{
-    //   width: '500px',
-    //    height: '200px',
-    //    overflowY: 'scroll' ,// Show scrollbar if content overflows
-    //    border: '1px solid black',
-    //    marginTop: '20px',
-    //  }}
-     >
-      <ul>
-        {artworks.map((artwork, index) => (
-            //  {museumObjects.objectIDs.slice(0, 10).map((objectID, index) => (
-          <li key={index}>
-            <p>Artworks: {artwork.id}</p>
-            
-
-            <ArticArtworkCard artwork_id={artwork.id}/>
-          
-            </li>
-        ))}
-      </ul>
-      </div>
+             
+      <Row className="gy-4">
+                    {artworks.map((artwork,index)=>(
+                        <Col lg={3} key={index}><ArticArtworkCard artwork_id={artwork.id} /></Col>))}
+                </Row>
+      <Row>
+                    <Col>
+                        <br/>
+                        <Pagination>
+                            <Pagination.Prev onClick={previousPage} />
+                            <Pagination.Item>{page}</Pagination.Item>
+                            <Pagination.Next onClick={nextPage} />
+                        </Pagination>
+                    </Col>
+                </Row>
+               
     </>)
 }
 export default ArticArtworks;

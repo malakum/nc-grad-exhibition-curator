@@ -19,13 +19,9 @@ const MuseumObjectDetail = () =>{
         setMuseumObjectDetail(museumObjectDetailFromApi);
       });
     }, [objectID])}
-    else {useEffect(() => {
-      fetchMusObjectDetail(100).then((museumObjectDetailFromApi) => {
-      console.log('Museum object Detail from api'+museumObjectDetailFromApi);
-      console.log(JSON.stringify(museumObjectDetailFromApi));
-    setMuseumObjectDetail(museumObjectDetailFromApi);
-  });
-}, [])}
+    else { 
+      return <p> Object Id is required..</p>
+    }
     
     if (!museumObjectDetail) {
       return <p>Loading...</p>;
@@ -38,7 +34,8 @@ const MuseumObjectDetail = () =>{
     <Card>
     
   {museumObjectDetail.primaryImage && (
-    <Card.Img variant="top" src={museumObjectDetail.primaryImage} alt ="primaryImage" width="100px" height="100px"/>
+    <Card.Img variant="top" src={museumObjectDetail.primaryImage?museumObjectDetail.primaryImage
+      : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="primaryImage" width="100px" height="100px"/>
   )}
   <Card.Body>
     <Card.Title>{museumObjectDetail.title ? museumObjectDetail.title : "N/A"}</Card.Title>
@@ -75,35 +72,7 @@ const MuseumObjectDetail = () =>{
       {museumObjectDetail.dimensions ? museumObjectDetail.dimensions : "N/A"}
       <br />
       <br />
-     {/* <p>museum Id {museumObjectDetail.objectID}</p>
-     <div >
-          <img src={museumObjectDetail.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
-        </div>
-     <p>museum department:{museumObjectDetail.department}</p>
-     <p>museum Name: {museumObjectDetail.objectName}</p>
-     <p>museum title :{museumObjectDetail.title}</p>
-     <p>museum Artist AlphaSort: {museumObjectDetail.artistAlphaSort}</p>
-     <p>museum Artist Nationality: {museumObjectDetail.artistNationality}</p>
-     <p>museum Artist Gender: {museumObjectDetail.artistGender}</p>
-     <p>museum Object Date : {museumObjectDetail.objectDate}</p>
-     <p>museum Object Begin Date: {museumObjectDetail.objectBeginDate}</p>
-     <p>museum Object End Date: {museumObjectDetail.objectEndDate}</p>
-     <div onClick={() => onClickURL(museumObjectDetail.objectURL) }>
-        ItemDeatilClick
-        </div>
-      <a href={museumObjectDetail.artistWikidata_URL} target="_blank" rel="noopener noreferrer">
-          Visit Profile
-
-        </a>
-        <a href={museumObjectDetail.primaryImage} target="_blank" rel="noopener noreferrer">
-          primary image
-        </a> */}
-        {/* <Button
-        variant={showAdded ? "primary" : "outline-primary"}
-        onClick={favouritesClicked}
-      >
-        {showAdded ? "+ Favourite (added)" : "+ Favourite"}
-      </Button> */}
+     
     </Card.Text>
   </Card.Body>
 </Card>

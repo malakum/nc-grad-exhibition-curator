@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () =>{
+      const [searchItem,setSearchItem] = useState('cat');
     return ( <>
          <h1> Art Exhibition Curator</h1>
+         {/* <div>
+         <p>Search Item: 
+         <input type="text" id="searchText" placeholder="Enter searchitem..." /> </p>
+         </div> */}
          <div>
-         <button >Metro Museum Departments
-         <Link
-                                         to={`/departments/`}
-                                          > Link for Metro Museum Departments
-                                    </Link>;
-                                    </button>  
-        </div>
-        <div>
          <button >Metro Museums Objects
          <Link
                                          to={`/objects`}

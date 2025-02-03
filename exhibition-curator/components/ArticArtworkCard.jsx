@@ -18,13 +18,9 @@ const ArticArtworkCard = ({artwork_id}) =>{
         setArtworkCard(dataFromApi);
       });
     }, [artwork_id])}
-    else {useEffect(() => {
-      fetchArticArtworkById(100).then((dataFromApi) => {
-      console.log('Museum object Detail from api'+dataFromApi);
-      console.log(JSON.stringify(dataFromApi));
-    setMuseumObjectCard(dataFromApi);
-  });
-}, [])}
+    else { 
+        return <p>artwork Id is required</p>
+    };
     
     if (!artworkCard) {
       return <p>Loading...</p>;
@@ -36,21 +32,19 @@ const ArticArtworkCard = ({artwork_id}) =>{
     <>
     
      <Card>
-     <img
+     {artworkCard.thumbnail.lqip && (
+    <Card.Img variant="top" src={artworkCard.thumbnail.lqip} alt ="artwork image" width="100px" height="100px"/>
     
-       src = {artworkCard.thumbnail.lqip
-        ? artworkCard.thumbnail.lqip
-        : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ={artworkCard.thumbnail.alt_text} width="100px" height="100px"
-        
-        />
-       
+  )}
+     
+        <p>{artworkCard.thumbnail.alt_text}</p>
         <Card.Body>
     <Card.Title>{artworkCard.title ? artworkCard.title : "N/A"}</Card.Title>
     <Card.Text>
-         <p>Artwork Id {artworkCard.id}</p>
+  
          <p>Artwork date_display:{artworkCard.date_display}</p>
          <p>Artwrok Artist_display: {artworkCard.artist_display}</p>
-         <p>Artwork thumbnail alt_text :{artworkCard.thumbnail.alt_text}</p>
+        
          <Link
                                               to={`/artworks/${artworkCard.id}`}
                                                > Link for Artwork detail
