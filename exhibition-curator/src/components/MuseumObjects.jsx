@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {fetchMusObjects} from "../utils/api";
+import {fetchMusObjects} from "../../utils/api";
 //import  Link  from 'react-router-dom' ;
 import MuseumObjectCard from "./MuseumObjectCard";
 import  Row  from "react-bootstrap/Row";

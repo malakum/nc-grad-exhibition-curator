@@ -2,18 +2,17 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-//import '../styles/bootstrap.min.css';
-import Header from '../components/Header';
-import MuseumObjects from '../components/MuseumObjects';
-import MuseumObjectDetail from '../components/MuseumObjectDetail';
-import MuseumMainPage from '../components/MuseumMainPage';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/bootstrap.min.css';
+import Header from './components/Header';
+import MuseumObjects from './components/MuseumObjects';
+import MuseumObjectDetail from './components/MuseumObjectDetail';
+import MuseumMainPage from './components/MuseumMainPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ArticArtworks from '../components/ArticArtworks';
-import ArticArtworkCard  from '../components/ArticArtworkCard';
-import ArticArtworkDetail from '../components/ArticArtworkDetail';
+import ArticArtworks from './components/ArticArtworks';
+import ArticArtworkCard  from './components/ArticArtworkCard';
+import ArticArtworkDetail from './components/ArticArtworkDetail';
 import { Container } from 'react-bootstrap';
-
 
 
 function App() {

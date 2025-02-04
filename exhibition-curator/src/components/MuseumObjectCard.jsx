@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {fetchMusObjectDetail} from "../utils/api";
+import {fetchMusObjectDetail} from "../../utils/api";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { Row, Col } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-import artChicagoImage from '../src/assets/artChicago.png';
+import artChicagoImage from '../../src/assets/artChicago.png';
 
 const MuseumMainPage = () =>{
     return ( <>
