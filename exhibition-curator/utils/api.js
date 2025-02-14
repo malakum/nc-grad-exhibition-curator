@@ -1,22 +1,43 @@
 import axios from 'axios';
 
-// const museumApi = axios.create({
-//     baseURL: "https://collectionapi.metmuseum.org/public/collection/v1"
-//   });
+const museumApi = axios.create({
+    baseURL: "https://collectionapi.metmuseum.org/public/collection/v1",
+  });
 
-//   const articApi = axios.create({
-//     baseURL: "https://api.artic.edu/api/v1/artworks"
-//   });
+  const articApi = axios.create({
+    baseURL: "https://api.artic.edu/api/v1/artworks",
+  });
+
+  export const getMusObjects = (queryStringMuseum) => {
+      
+       console.log(queryStringMuseum);
+       return museumApi.get(`/search${queryStringMuseum}`);
+     
+    };
+
+  // export const getMusObjectDetail = (objectIDs1) => {
+  //      console.log('objectid1'+objectIDs1);
+  //         return museumApi.get("/get");
+  // }
+
+  // export const getArtworks = () => {
+  //        return articApi.get("/get");
+  // }
+
+  // export const getArtworkDetail = (artwork_id1) => {
+  //      console.log('artworkid1'+artwork_id1);
+  //         return articApi.get("get");
+  // }
 
 
- async function fetchMusObjects(departmentId , q, isHighlight,geolocation){
+ async function fetchMusObjects(department , q, isHighlight,geolocation){
     
     const url = `https://collectionapi.metmuseum.org/public/collection/v1`;
       try {
      
          const query = [];
         if (isHighlight) query.push(`isHighlight=${isHighlight}`);
-        if (departmentId) query.push(`departmentId=${departmentId}`);
+        if (department) query.push(`department=${department}`);
         if (q) query.push(`q=${q}`);
     
         if (geolocation) {
@@ -32,12 +53,14 @@ import axios from 'axios';
         //   if (dateEnd.length>1){query.push(`dateEnd=${dateEnd}`);}
         // }
         const queryString = query.length ? `?${query.join("&")}` : "";
+        console.log('query string museum objects',queryString);
       
       
             const response1 = await axios.get(url+`/search${queryString}`); // Make GET request
     
       
        const getMusObjects = response1.data;
+       console.log('museum objects',getMusObjects);
             
        return getMusObjects;
       
@@ -66,7 +89,7 @@ import axios from 'axios';
   fetchMusObjectDetail(2);
 
  
-async function fetchArticArtworks(q,page,limit) {
+async function fetchArticArtworks(q,page,limit,per_page) {
 const url1 = `https://api.artic.edu/api/v1/artworks`;
 try {
       const query = [];
@@ -80,6 +103,9 @@ try {
 
          const response2 = await axios.get(url1+`/search${queryString}`); // Make GET request
          const getArticArtworks = response2.data.data;
+        //  const getArticArtworksPerPage = getArticArtworks.slice(0,per_page);
+        //  console.log('artic art works per page',getArticArtworksPerPage.length);
+        //  console.log('artic art works per page', getArticArtworksPerPage);
          const getArticPagination = response2.data.pagination;
      
          return getArticArtworks;
@@ -88,7 +114,7 @@ try {
        console.error('Error fetching data from Artic Artworks:', error);
 }
 }
-fetchArticArtworks('cat',1,2);
+fetchArticArtworks('cat',1,2,2);
 
 async function fetchArticArtworkById(artwork_id) {
   const url1 = `https://api.artic.edu/api/v1/artworks`;

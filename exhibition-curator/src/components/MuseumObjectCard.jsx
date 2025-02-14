@@ -30,22 +30,28 @@ const MuseumObjectCard = ({objectID}) =>{
     
      return (    
     <>
-    
-     <Card>
+    <div >
+     <Card style={{ width: "18rem", height: "25rem" }} >
      <Card.Img
         variant="top"
        src ={museumObjectCard.primaryImageSmall
         ? museumObjectCard.primaryImageSmall
-        : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="primaryImageImage" width="100px" height="100px"
-        //    src={museumObjectCard.primaryImageSmall} alt ="primary image small" width="100px" height="100px"/>
-        />
+        : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="primaryImageSmall"  height ="100px" width ="100px"
+       />
         
-        <Card.Body>
-    <Card.Title>{museumObjectCard.title ? museumObjectCard.title : "N/A"}</Card.Title>
-    <Card.Text>
-         <p>museum Id {museumObjectCard.objectID}</p>
-         <p>museum department:{museumObjectCard.department}</p>
-         <p>museum Name: {museumObjectCard.objectName}</p>
+        <Card.Body >
+    <Card.Title >{museumObjectCard.title ? museumObjectCard.title.slice(0,20) : "N/A"}</Card.Title>
+    <Card.Text >
+   
+    <strong>Department: </strong>
+      {museumObjectCard.department ? museumObjectCard.department : "N/A"}
+      <br />
+      <strong>Object Name: </strong>
+      {museumObjectCard.objectName ? museumObjectCard.objectName : "N/A"}
+      <br />
+         {/* <p>museum Id {museumObjectCard.objectID}</p>
+         <p>Department : {museumObjectCard.department}</p>
+         <p>Object Name : {museumObjectCard.objectName}</p> */}
          <Link
                                               to={`/objects/${objectID}`}
                                                > Link for object detail
@@ -54,6 +60,7 @@ const MuseumObjectCard = ({objectID}) =>{
     </Card.Text>
   </Card.Body>
 </Card>
+</div>
 </>
      );   
     

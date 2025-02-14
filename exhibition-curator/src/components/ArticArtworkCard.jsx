@@ -8,13 +8,13 @@ import { BrowserRouter, Link } from "react-router-dom";
 const ArticArtworkCard = ({artwork_id}) =>{
 
     const [artworkCard, setArtworkCard] = useState(null);
-    console.log('inside artwork card',artwork_id);
+  
 
    
     if (artwork_id){
         useEffect(() => {
           fetchArticArtworkById(artwork_id).then((dataFromApi) => {
-      console.log('Museum object Detail from api'+dataFromApi);
+     // console.log('Museum object Detail from api'+dataFromApi);
         setArtworkCard(dataFromApi);
       });
     }, [artwork_id])}
@@ -31,19 +31,29 @@ const ArticArtworkCard = ({artwork_id}) =>{
      return (    
     <>
     
-     <Card>
-     {artworkCard.thumbnail.lqip && (
-    <Card.Img variant="top" src={artworkCard.thumbnail.lqip} alt ="artwork image" width="100px" height="100px"/>
+     <Card style={{ width: "18rem", height: "25rem" }}>
+     {/* {artworkCard.thumbnail.lqip && (
+    <Card.Img variant="top" src={artworkCard.thumbnail.lqip
+      ?artworkCard.thumbnail.lqip
+      : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="artwork image" width="100px" height="100px"/>
     
-  )}
-     
-        <p>{artworkCard.thumbnail.alt_text}</p>
-        <Card.Body>
+  )} */}
+     {artworkCard.image_id &&(
+    <Card.Img variant = "top" src = {`https://www.artic.edu/iiif/2/`+ artworkCard.image_id+`/full/100,/0/default.jpg` } alt ="artwork" width ="100px" height="100px"/>
+   )}
+    {/* <p>{artworkCard.thumbnail.alt_text}</p> */}
+        {/* <p>{artworkCard.thumbnail.alt_text}</p> */}
+        <Card.Body >
     <Card.Title>{artworkCard.title ? artworkCard.title : "N/A"}</Card.Title>
-    <Card.Text>
-  
-         <p>Artwork date_display:{artworkCard.date_display}</p>
-         <p>Artwrok Artist_display: {artworkCard.artist_display}</p>
+    <Card.Text >
+    <strong>Date Display : </strong>
+      {artworkCard.date_display ? artworkCard.date_display : "N/A"}
+      <br />
+      <strong>Artist Display : </strong>
+      {artworkCard.artist_display ? artworkCard.artist_display.slice(0,40) : "N/A"}
+      <br />
+         {/* <p>Artwork Date Display : {artworkCard.date_display}</p>
+         <p>Artwrok Artist Display : {artworkCard.artist_display}</p> */}
         
          <Link
                                               to={`/artworks/${artworkCard.id}`}

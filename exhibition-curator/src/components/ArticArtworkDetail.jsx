@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {fetchArticArtworkById, fetchMusObjectDetail} from "../../utils/api";
+import {fetchArticArtworkById} from "../../utils/api";
 import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -32,51 +32,55 @@ const ArticArtworkDetail = () =>{
      return (     
     <> Artwork Detail
     <Card>
-    {artworkDetail.thumbnail.lqip && (
+    {/* {artworkDetail.thumbnail.lqip && (
     <Card.Img variant="top" src={artworkDetail.thumbnail.lqip} alt ="artwork image" width="100px" height="100px"/>
     
-  )}
+  )
+   } */}
+   {artworkDetail.image_id &&(
+    <Card.Img variant = "top" src = {`https://www.artic.edu/iiif/2/`+ artworkDetail.image_id+`/full/200,/0/default.jpg` } alt ="artwork" width ="200px" height="200px"/>
+   )}
     <p>{artworkDetail.thumbnail.alt_text}</p>
-    <p>https://www.artic.edu/iiif/2/{artworkDetail.image_id}/full/843,/0/default.jpg</p>
+    {/* <p>https://www.artic.edu/iiif/2/{artworkDetail.image_id}/full/843,/0/default.jpg</p> */}
    
   <Card.Body>
     <Card.Title>{artworkDetail.title ? artworkDetail.title : "N/A"}</Card.Title>
     <Card.Text>
     
-    <strong>Date Display: </strong>
+    <strong>Date Display : </strong>
       {artworkDetail.date_display ? artworkDetail.date_display : "N/A"}
       <br />
-      <strong>Main reference number: </strong>
+      <strong>Main reference number : </strong>
       {artworkDetail.main_reference_number ? artworkDetail.main_reference_number : "N/A"}
       <br />
-      <strong>Medium display: </strong>
+      <strong>Medium display : </strong>
       {artworkDetail.medium_display ? artworkDetail.medium_display : "N/A"}
       <br />
       <br />
-      <strong>Artist artist_display: </strong>
+      <strong>Artist Display : </strong>
       {artworkDetail.artist_display ? artworkDetail.artist_display : "N/A"}
       
       <br />
-      <strong>Place of origin: </strong>
+      <strong>Place of origin : </strong>
       {artworkDetail.place_of_origin ? artworkDetail.place_of_origin : "N/A"}
       <br />
-      dimention credit line
-      <strong>short_description </strong>
+      
+      <strong>Short Description :  </strong>
       {artworkDetail.short_description ? artworkDetail.short_description : "N/A"}
       <br />
-      <strong>artwork_type_title </strong>
+      <strong>Artwork type title : </strong>
       {artworkDetail.artwork_type_title ? artworkDetail.artwork_type_title : "N/A"}
       <br />
-      <strong>department_title </strong>
+      <strong>Department Title : </strong>
       {artworkDetail.department_title ? artworkDetail.department_title : "N/A"}
       <br />
-      <strong>artist_title </strong>
+      <strong>Artist Title : </strong>
       {artworkDetail.artist_title ? artworkDetail.artist_title : "N/A"}
       <br />
-      <strong>dimensions </strong>
+      <strong>Dimensions : </strong>
       {artworkDetail.dimensions ? artworkDetail.dimensions : "N/A"}
       <br />
-      <strong>credit_line </strong>
+      <strong>Credit Line : </strong>
       {artworkDetail.credit_line ? artworkDetail.credit_line : "N/A"}
       <br />
      

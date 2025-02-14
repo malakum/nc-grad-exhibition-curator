@@ -6,15 +6,29 @@ import  Row  from "react-bootstrap/Row";
  import Pagination from 'react-bootstrap/Pagination';
  import  Col  from "react-bootstrap/Col";
 
+ import { useLocation } from "react-router-dom";
+
 
 
 const ArticArtworks = () =>{
 
     const [artworks, setArtworks] = useState(null);
+    const [artworkList, setArtworkList] = useState([]);
     const [searchItem,setSearchItem] = useState('cat');
-    const limit = 10; // can't be more that 100 per page  
-    let q ='cat';
-    const PER_PAGE = 10;
+    const limit = 8; 
+    const PER_PAGE = 8;
+   
+          const location = useLocation();
+          let q = null;
+            if (location.state.q ){
+              q = location.state.q;
+          
+              console.log('q inside artic artworks',q);
+            }
+              if (!q ){
+               q = 'cat';
+              };
+      
     
     const [page, setPage] = useState(1);
 
@@ -26,7 +40,8 @@ const ArticArtworks = () =>{
     }
 
     function nextPage(){
-        if(page<artworks.length){
+     
+        if (page <3){
             setPage(page=>page+1);
         }
     }
@@ -37,11 +52,13 @@ const ArticArtworks = () =>{
     console.log('Artic Artworks'+dataFromApi);
       setArtworks(dataFromApi);
     });
-  }, ['cat',1,10]);
+    
+  }, ['cat',page,8]);
 
   if (!artworks) {
     return <p>Loading...</p>;
   };
+ 
 
     return ( <>
             

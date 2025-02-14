@@ -35,7 +35,7 @@ const MuseumObjectDetail = () =>{
     
   {museumObjectDetail.primaryImage && (
     <Card.Img variant="top" src={museumObjectDetail.primaryImage?museumObjectDetail.primaryImage
-      : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="primaryImage" width="100px" height="100px"/>
+      : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="primaryImage" width="200px" height="200px"/>
   )}
   <Card.Body>
     <Card.Title>{museumObjectDetail.title ? museumObjectDetail.title : "N/A"}</Card.Title>
@@ -54,7 +54,7 @@ const MuseumObjectDetail = () =>{
       {museumObjectDetail.artistDisplayName ? museumObjectDetail.artistDisplayName : "N/A"}
       {museumObjectDetail.artistDisplayName && (
         <>
-          &nbsp;
+          {/* &nbsp; */}
           <a
             href={museumObjectDetail?.artistWikidata_URL}
             target="_blank"
