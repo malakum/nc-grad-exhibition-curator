@@ -11,13 +11,15 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import styles from '../styles/History.module.css';
 import { removeFromHistory } from '../lib/userData';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
-export default function AdvancedSearch() {
+export default function History() {
+ // export default function AdvancedSearch2() {
 
     //Middleware
   //const router = useRouter();
+  const navigate = useNavigate();
 
   //using Atom
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
@@ -36,7 +38,8 @@ export default function AdvancedSearch() {
   function historyClicked(e, index) {
     e.preventDefault();
     let pushString = `/object?{searchHistory[index]}`;
-    Navigate(pushString);
+    console.log(pushString);
+   // navigate(pushString);
     // the following neeed to be modified
     // let pushString = `/artwork?${searchHistory[index]}`
     // router.push(pushString);

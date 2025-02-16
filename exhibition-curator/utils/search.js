@@ -9,7 +9,7 @@ import { searchHistoryAtom } from '../store';
 
 import { addToHistory } from '../lib/userData';
 
-export default function AdvancedSearch() {
+export default function AdvancedSearch1() {
 
 //using Atom
 const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);

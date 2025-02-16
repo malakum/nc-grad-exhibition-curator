@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {fetchArticArtworks} from "../../utils/api";
 import ArticArtworkCard from "./ArticArtworkCard";
-import  Card  from "react-bootstrap/Card";
+//import  Card  from "react-bootstrap/Card";
 import  Row  from "react-bootstrap/Row";
  import Pagination from 'react-bootstrap/Pagination';
  import  Col  from "react-bootstrap/Col";
@@ -13,26 +13,22 @@ import  Row  from "react-bootstrap/Row";
 const ArticArtworks = () =>{
 
     const [artworks, setArtworks] = useState(null);
-    const [artworkList, setArtworkList] = useState([]);
-    const [searchItem,setSearchItem] = useState('cat');
-    const limit = 8; 
-    const PER_PAGE = 8;
-   
-          const location = useLocation();
-          let q = null;
-            if (location.state.q ){
-              q = location.state.q;
-          
-              console.log('q inside artic artworks',q);
-            }
-              if (!q ){
-               q = 'cat';
-              };
-      
-    
+    // const [artworkList, setArtworkList] = useState([]);
+    // const [searchItem,setSearchItem] = useState('cat');
     const [page, setPage] = useState(1);
-
-
+  //  const limit = 8; 
+    const PER_PAGE = 8; // should not be more then 99
+    const limit = PER_PAGE; // should not be more than 99
+   
+    const location = useLocation();
+    let q ='cat';
+    if (location.state){
+       if (location.state.searchField ){
+           q = location.state.searchField;
+           console.log('q inside artic artworks',q);
+           }
+    };
+     
     function previousPage(){
         if(page > 1){
             setPage(page=>page-1);
@@ -41,7 +37,7 @@ const ArticArtworks = () =>{
 
     function nextPage(){
      
-        if (page <3){
+        if (page <5){
             setPage(page=>page+1);
         }
     }
@@ -53,7 +49,7 @@ const ArticArtworks = () =>{
       setArtworks(dataFromApi);
     });
     
-  }, ['cat',page,8]);
+  }, [q,page,PER_PAGE]);
 
   if (!artworks) {
     return <p>Loading...</p>;

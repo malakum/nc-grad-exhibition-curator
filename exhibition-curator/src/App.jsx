@@ -18,6 +18,7 @@ import { Container } from 'react-bootstrap';
 import Login  from './components/Login';
 import Register from './components/Register';
 import MainNav from './components/MainNav';
+import AdvancedSearch from './components/AdvancedSearch';
 
 
 function App() {
@@ -29,18 +30,19 @@ function App() {
 
        <Header />
         <MainNav />
-         {/* <Container> */}
+         <Container>
         <Routes>
               <Route path="/" element={<MuseumMainPage />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
+              <Route path="/search" element ={<AdvancedSearch />}></Route>
               <Route path="/objects" element ={<MuseumObjects />}></Route>
              <Route path="/objects/:objectID" element ={<MuseumObjectDetail />}></Route>
               <Route path ="/artworks" element ={<ArticArtworks/>}></Route>
              <Route path ="/artworks/:id" element ={<ArticArtworkDetail/>}></Route>
              <Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />
         </Routes>
-        {/* </Container> */}
+        </Container>
 
 </BrowserRouter>
 </div>

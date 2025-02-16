@@ -61,21 +61,38 @@ console.log('location',location);
      <>
       <Navbar className="fixed-top navbar-dark bg-dark" bg="light" expand="lg" expanded={isExpanded}>
          <Container>
-            <Navbar.Brand>Mala Kumari</Navbar.Brand>
+            <Navbar.Brand> Mala Kumari</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={(e) => {setIsExpanded(!isExpanded)}}/>
             <Navbar.Collapse id="basic-navbar-nav">
-               <p>home and search page</p>
-               <Nav className="me-auto">
-               <Link 
+            
+               <Nav className="me-auto" >
+               <Link className="nav-link"
                                          to={`/`} 
                                           > Home
                                     </Link>
-                  <Link href="/" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={location.pathname === "/"}>Home</Nav.Link></Link>
+                  {/* <Link href="/" passHref legacyBehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={location.pathname === "/"}>Home</Nav.Link></Link>
+                */}
+                  <Link className="nav-link"
+                                         to={`/search`} 
+                                          > Advance Search
+                                    </Link>
+                                    <Link className="nav-link"
+                                         to={`/objects `} 
+                                          > Link for Metro Museum 
+                                    </Link>
+                                    <Link className="nav-link"
+                                         to={`/artworks `} 
+                                          > Link for Artwork 
+                                    </Link>
                   {token 
                   && 
-                  
-                  <Link href="/search" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={location.pathname === "/search"}>Advanced Search</Nav.Link></Link>
-                  }
+                  <Link className="nav-link"
+                  to={`/search`} 
+                   > Advance Search
+             </Link>
+                  // <Link href="/search" passHref legacyBehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={location.pathname === "/search"}>Advanced Search</Nav.Link></Link>
+                
+                }
                   
                </Nav>
                &nbsp;
@@ -128,22 +145,20 @@ console.log('location',location);
                :
                <Nav className="ms-auto">
                 
-                  <Link
+                  <Link className="nav-link"
                                          to={`/login`} 
                                           > Login
                                     </Link>
-                                    <p>------</p>              
-                                    <Link
+                                           
+                                    <Link className="nav-link"
                                          to={`/register`} 
                                           > Register
                                     </Link>
 
-                  <Link href="/register" ><Nav.Link >Register</Nav.Link></Link>
-                  <Link href="/login" ><Nav.Link >Login</Nav.Link></Link>
-                  {/* <Link href="/register" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={location.pathname === "/register"}>Register</Nav.Link></Link>
-                  <Link href="/login" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={location.pathname=== "/login"}>Login</Nav.Link></Link>
-              
+                   {/* <Link href="/register" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={navigate("/register")}>Register</Nav.Link></Link>
+                  <Link href="/login" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={navigate("/login")}>Login</Nav.Link></Link>
                */}
+               
               
                </Nav>
              

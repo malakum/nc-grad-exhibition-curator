@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {fetchArticArtworkById} from "../../utils/api";
+//import {fetchArticArtworkById} from "../../utils/api";
 import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { getArtworkDetail } from "../../utils/api";
 
 
 const ArticArtworkDetail = () =>{
@@ -11,14 +12,45 @@ const ArticArtworkDetail = () =>{
     console.log('use params',useParams());
   const { id } =useParams();   
   console.log(id);
+
+  //const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+
+  //changing default value to false
+  const [showAdded, setShowAdded] = useState(false);
+
+  //const { data, error } = useSWR(props.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.objectID}` : null);
+  
+  //using the useEffect hook
+  // useEffect(()=>{
+  //     setShowAdded(favouritesList?.includes(props.objectID))
+  // }, [favouritesList])
+
+
+  //async- await function favouritesClicked
+  async function favouritesClickedArtwork() {
+      if(showAdded){
+         // setFavouritesList(await removeFromFavourites(props.objectID))
+          setShowAdded(false)
+      }
+      else{
+        //  setFavouritesList(await addToFavourites(props.objectID))
+          setShowAdded(true)
+      }
+  }
    
     if (id){
         useEffect(() => {
-          fetchArticArtworkById(id).then((dataFromApi) => {
-      console.log('ArticArtwork detail data from api'+dataFromApi);
-        setArtworkDetail(dataFromApi);
-      });
-    }, [id])}
+       //   fetchArticArtworkById
+          getArtworkDetail(id).
+          then((dataFromApi) => {
+                console.log('ArticArtwork detail data from api'+dataFromApi);
+                setArtworkDetail(dataFromApi);
+           })
+           .catch((err) => {
+            // setIsLoading(false);
+               setError(err.response.data);
+           })
+           }, [id])}
    else {
     return <p>artworks Id should be there....</p>
    }
@@ -85,7 +117,12 @@ const ArticArtworkDetail = () =>{
       <br />
      
       <br />
-    
+      <Button
+                  variant={showAdded ? "primary" : "outline-primary"}
+                  onClick={favouritesClickedArtwork}
+                >
+                  {showAdded ? "+ Favourite (added)" : "+ Favourite"}
+                </Button>
        
     </Card.Text>
   </Card.Body>

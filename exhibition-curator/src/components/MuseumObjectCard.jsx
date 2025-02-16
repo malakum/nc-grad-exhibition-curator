@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from "react";
-import {fetchMusObjectDetail} from "../../utils/api";
+//import {fetchMusObjectDetail} from "../../utils/api";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { BrowserRouter, Link } from "react-router-dom";
+import { getMusObjectDetail } from "../../utils/api";
 
 const MuseumObjectCard = ({objectID}) =>{
 
     const [museumObjectCard, setMuseumObjectCard] = useState(null);
 
-    function onClickURL (url){ window.open(url,'_blank')};
+   // function onClickURL (url){ window.open(url,'_blank')};
    
     if (objectID){
-        useEffect(() => {
-          fetchMusObjectDetail(objectID).then((museumObjectDetailFromApi) => {
-      console.log('Museum object Detail from api'+museumObjectDetailFromApi);
-        setMuseumObjectCard(museumObjectDetailFromApi);
-      });
-    }, [objectID])}
+      useEffect(() => {
+        getMusObjectDetail(objectID).
+        then((museumObjectDetailFromApi) => {
+           console.log('Museum object Detail from api'+museumObjectDetailFromApi);
+            setMuseumObjectCard(museumObjectDetailFromApi);
+         })
+         .catch((err) => {
+         // setIsLoading(false);
+            setError(err.response.data);
+        })
+       }, [objectID])}
+    //     useEffect(() => {
+    //       fetchMusObjectDetail(objectID).then((museumObjectDetailFromApi) => {
+    //   console.log('Museum object Detail from api'+museumObjectDetailFromApi);
+    //     setMuseumObjectCard(museumObjectDetailFromApi);
+    //   });
+    // }, [objectID])}
     else {
       return(<p> Object Id is required...</p>)
     }
@@ -31,7 +43,7 @@ const MuseumObjectCard = ({objectID}) =>{
      return (    
     <>
     <div >
-     <Card style={{ width: "18rem", height: "25rem" }} >
+     <Card style={{ width: "18rem", height: "22rem" }} >
      <Card.Img
         variant="top"
        src ={museumObjectCard.primaryImageSmall

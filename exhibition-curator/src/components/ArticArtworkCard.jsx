@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {fetchArticArtworkById, fetchMusObjectDetail} from "../../utils/api"
+//import {fetchArticArtworkById, fetchMusObjectDetail} from "../../utils/api"
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useParams } from "react-router-dom";
-import { BrowserRouter, Link } from "react-router-dom";
+//import { useParams } from "react-router-dom";
+//import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { getArtworkDetail } from "../../utils/api";
 
 const ArticArtworkCard = ({artwork_id}) =>{
 
@@ -13,10 +15,16 @@ const ArticArtworkCard = ({artwork_id}) =>{
    
     if (artwork_id){
         useEffect(() => {
-          fetchArticArtworkById(artwork_id).then((dataFromApi) => {
-     // console.log('Museum object Detail from api'+dataFromApi);
-        setArtworkCard(dataFromApi);
-      });
+          // fetchArticArtworkById
+          getArtworkDetail(artwork_id).
+          then((dataFromApi) => {
+                 // console.log('Museum object Detail from api'+dataFromApi);
+                   setArtworkCard(dataFromApi);
+            })
+            .catch((err) => {
+              // setIsLoading(false);
+                 setError(err.response.data);
+             })
     }, [artwork_id])}
     else { 
         return <p>artwork Id is required</p>

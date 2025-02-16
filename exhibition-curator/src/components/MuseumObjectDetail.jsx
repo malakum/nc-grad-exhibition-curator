@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {fetchMusObjectDetail} from "../../utils/api";
+//import {fetchMusObjectDetail} from "../../utils/api";
 import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { getMusObjectDetail } from "../../utils/api";
+
 
 
 const MuseumObjectDetail = () =>{
@@ -11,14 +13,49 @@ const MuseumObjectDetail = () =>{
     const { objectID } =useParams();   
 
     function onClickURL (url){ window.open(url,'_blank')};
+  //  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+
+    //changing default value to false
+    const [showAdded, setShowAdded] = useState(false);
+
+  //  const { data, error } = useSWR(props.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.objectID}` : null);
+    
+    //using the useEffect hook
+    // useEffect(()=>{
+    //     setShowAdded(favouritesList?.includes(props.objectID))
+    // }, [favouritesList])
+
+
+    //async- await function favouritesClicked
+    async function favouritesClickedMuseum() {
+        if(showAdded){
+         //   setFavouritesList(await removeFromFavourites(props.objectID))
+            setShowAdded(false)
+        }
+        else{
+          //  setFavouritesList(await addToFavourites(props.objectID))
+            setShowAdded(true)
+        }
+    }
    
     if (objectID){
-        useEffect(() => {
-          fetchMusObjectDetail(objectID).then((museumObjectDetailFromApi) => {
-      console.log('Museum object Detail from api'+museumObjectDetailFromApi);
-        setMuseumObjectDetail(museumObjectDetailFromApi);
-      });
-    }, [objectID])}
+      useEffect(() => {
+        getMusObjectDetail(objectID).
+        then((museumObjectDetailFromApi) => {
+              console.log('Museum object Detail from api'+museumObjectDetailFromApi);
+              setMuseumObjectDetail(museumObjectDetailFromApi);
+             })
+             .catch((err) => {
+              // setIsLoading(false);
+                 setError(err.response.data);
+             })
+  }, [objectID])}
+    //     useEffect(() => {
+    //       fetchMusObjectDetail(objectID).then((museumObjectDetailFromApi) => {
+    //   console.log('Museum object Detail from api'+museumObjectDetailFromApi);
+    //     setMuseumObjectDetail(museumObjectDetailFromApi);
+    //   });
+    // }, [objectID])}
     else { 
       return <p> Object Id is required..</p>
     }
@@ -72,7 +109,12 @@ const MuseumObjectDetail = () =>{
       {museumObjectDetail.dimensions ? museumObjectDetail.dimensions : "N/A"}
       <br />
       <br />
-     
+      <Button
+                  variant={showAdded ? "primary" : "outline-primary"}
+                  onClick={favouritesClickedMuseum}
+                >
+                  {showAdded ? "+ Favourite (added)" : "+ Favourite"}
+                </Button>
     </Card.Text>
   </Card.Body>
 </Card>

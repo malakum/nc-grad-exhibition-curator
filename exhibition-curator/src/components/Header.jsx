@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () =>{
 
-      const [searchField, setSearchField] = useState();
+      const [searchField, setSearchField] = useState('cat');
        const navigate = useNavigate();
       
         //submitting Form async fucntion
@@ -23,20 +23,20 @@ const Header = () =>{
          
       }
       const handleMetro = (e) =>{
-            const  q= searchField;
+          //  const  q= searchField;
             console.log('searchfeild',searchField);
-            console.log('q',q);
-            if (q){
-            navigate ("/objects" ,{state : { q : q}});
-            }
+           // console.log('q',q);
+          //  if (q){
+            navigate ("/objects" ,{state : { searchField : searchField}});
+         //   }
       };
       const handleArtworks = (e) =>{
-            const  q= searchField;
+          //  const  q= searchField;
             console.log('searchfeild',searchField);
-            console.log('q',q);
-            if (q){
-            navigate ("/artworks" ,{state : { q : q}});
-            }
+           // console.log('q',q);
+          //  if (q){
+            navigate ("/artworks" ,{state : { searchField : searchField}});
+           // }
       };
       const handleHome = (e) =>{
          
@@ -45,6 +45,7 @@ const Header = () =>{
       };
       
     return ( <>
+          <p>.......</p>
          <h1> Art Exhibition Curator</h1>
          <Form className="d-flex" onSubmit={submitForm}>
                   <Form.Control
@@ -59,26 +60,26 @@ const Header = () =>{
          <div>
           
          <Button onClick={handleMetro}> Metro Museums </Button>
-         <Link
+         {/* <Link
                                          to={`/objects `} 
                                           > Link for Metro Museum 
-                                    </Link>
+                                    </Link> */}
           </div>
           <div>          
             <Button onClick={handleArtworks}> Artic Artworks </Button>
-         <Link
+         {/* <Link
                                          to={`/artworks`} 
                                           > Link for Artic Artwork
-                                    </Link> 
+                                    </Link>  */}
                                                                </div>
 
          <div>
-         <Button onClick={handleHome}>Home
-         <Link
+         <Button onClick={handleHome}>Home </Button>
+         {/* <Link
                                          to={`/`}
                                           > Link for Home
-                                    </Link>; </Button>
-                                                               </div>
+                                    </Link>; 
+                                      </div>
                                                                <Link
                                          to={`/login`} 
                                           > Link for Login Page
@@ -86,7 +87,8 @@ const Header = () =>{
                                     <Link
                                          to={`/register`} 
                                           > Link for Register Page
-                                    </Link>
+                                    </Link> */}
+                                    </div>
 
     </>)
 }
