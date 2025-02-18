@@ -19,7 +19,7 @@ Secondly, To develop a modern, responsive user interface for searching and viewi
 
 ## Functionality
 
-To use the application, User have to select the link of two different Museum and then  App will render the output . 
+To use the application, User first put some search criteria such as mouse ,sunflower etc and then press any one button to chechk data from two different Museum and then  App will render the output . 
 
 ## Setup
 
@@ -54,6 +54,9 @@ npm install react-bootstrap bootstrap
 
 ## Link
 An online hosted version of this repository can be found at:
+https://euphonious-strudel-18e6a7.netlify.app/
+
+https://extraordinary-axolotl-fccdc6.netlify.app/
 
 
 
