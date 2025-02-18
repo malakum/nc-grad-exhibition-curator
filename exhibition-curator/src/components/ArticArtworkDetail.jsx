@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//import {fetchArticArtworkById} from "../../utils/api";
 import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -10,15 +9,14 @@ const ArticArtworkDetail = () =>{
 
     const [artworkDetail, setArtworkDetail] = useState(null);
     console.log('use params',useParams());
-  const { id } =useParams();   
-  console.log(id);
+     const { id } =useParams();   
+     console.log(id);
 
   //const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 
   //changing default value to false
   const [showAdded, setShowAdded] = useState(false);
 
-  //const { data, error } = useSWR(props.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.objectID}` : null);
   
   //using the useEffect hook
   // useEffect(()=>{
@@ -64,17 +62,12 @@ const ArticArtworkDetail = () =>{
      return (     
     <> Artwork Detail
     <Card>
-    {/* {artworkDetail.thumbnail.lqip && (
-    <Card.Img variant="top" src={artworkDetail.thumbnail.lqip} alt ="artwork image" width="100px" height="100px"/>
-    
-  )
-   } */}
+   
    {artworkDetail.image_id &&(
     <Card.Img variant = "top" src = {`https://www.artic.edu/iiif/2/`+ artworkDetail.image_id+`/full/200,/0/default.jpg` } alt ="artwork" width ="200px" height="200px"/>
    )}
     <p>{artworkDetail.thumbnail.alt_text}</p>
-    {/* <p>https://www.artic.edu/iiif/2/{artworkDetail.image_id}/full/843,/0/default.jpg</p> */}
-   
+      
   <Card.Body>
     <Card.Title>{artworkDetail.title ? artworkDetail.title : "N/A"}</Card.Title>
     <Card.Text>

@@ -13,15 +13,13 @@ import  Row  from "react-bootstrap/Row";
 const ArticArtworks = () =>{
 
     const [artworks, setArtworks] = useState(null);
-    // const [artworkList, setArtworkList] = useState([]);
-    // const [searchItem,setSearchItem] = useState('cat');
+   
     const [page, setPage] = useState(1);
-  //  const limit = 8; 
     const PER_PAGE = 8; // should not be more then 99
     const limit = PER_PAGE; // should not be more than 99
    
     const location = useLocation();
-    let q ='cat';
+    let q ='sunflower';
     if (location.state){
        if (location.state.searchField ){
            q = location.state.searchField;

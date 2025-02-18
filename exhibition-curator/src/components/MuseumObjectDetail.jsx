@@ -4,36 +4,41 @@ import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { getMusObjectDetail } from "../../utils/api";
+import { useAtom } from "jotai";
+import { favouritesAtom } from "../../store";
+import { atom } from "jotai";
+
 
 
 
 const MuseumObjectDetail = () =>{
 
     const [museumObjectDetail, setMuseumObjectDetail] = useState(null);
+
     const { objectID } =useParams();   
 
     function onClickURL (url){ window.open(url,'_blank')};
+ 
   //  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-
-    //changing default value to false
+   
+   
     const [showAdded, setShowAdded] = useState(false);
 
-  //  const { data, error } = useSWR(props.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.objectID}` : null);
-    
     //using the useEffect hook
     // useEffect(()=>{
     //     setShowAdded(favouritesList?.includes(props.objectID))
     // }, [favouritesList])
+  //  let newShowAdded =favouritesList?.includes(objectID);
 
 
     //async- await function favouritesClicked
     async function favouritesClickedMuseum() {
         if(showAdded){
-         //   setFavouritesList(await removeFromFavourites(props.objectID))
+          //  setFavouritesList(await removeFromFavourites(objectID))
             setShowAdded(false)
         }
         else{
-          //  setFavouritesList(await addToFavourites(props.objectID))
+          //  setFavouritesList(await addToFavourites(objectID))
             setShowAdded(true)
         }
     }
@@ -77,6 +82,9 @@ const MuseumObjectDetail = () =>{
   <Card.Body>
     <Card.Title>{museumObjectDetail.title ? museumObjectDetail.title : "N/A"}</Card.Title>
     <Card.Text>
+    <strong>Object Name: </strong>
+      {museumObjectDetail.objectName ? museumObjectDetail.objectName : "N/A"}
+      <br />
     <strong>Date: </strong>
       {museumObjectDetail.objectDate ? museumObjectDetail.objectDate : "N/A"}
       <br />

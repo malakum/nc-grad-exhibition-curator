@@ -61,10 +61,14 @@ const MuseumObjectCard = ({objectID}) =>{
       <strong>Object Name: </strong>
       {museumObjectCard.objectName ? museumObjectCard.objectName : "N/A"}
       <br />
-         {/* <p>museum Id {museumObjectCard.objectID}</p>
-         <p>Department : {museumObjectCard.department}</p>
-         <p>Object Name : {museumObjectCard.objectName}</p> */}
-         <Link
+      <strong>Medium: </strong>
+      {museumObjectCard.medium ? museumObjectCard.medium.slice(0,10) : "N/A"}
+      <br />
+      {/* <strong>Geolocation: </strong>
+      {museumObjectCard.geolocation ? museumObjectCard.geolocation : "N/A"}
+      <br /> */}
+
+                <Link
                                               to={`/objects/${objectID}`}
                                                > Link for object detail
                                                 

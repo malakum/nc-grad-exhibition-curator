@@ -19,7 +19,8 @@ import Login  from './components/Login';
 import Register from './components/Register';
 import MainNav from './components/MainNav';
 import AdvancedSearch from './components/AdvancedSearch';
-
+import { UserProvider } from './contexts/userProvider';
+import FavouritMuseumData from './components/FavouriteMuseumData';
 
 function App() {
   
@@ -28,12 +29,15 @@ function App() {
       <div>
 <BrowserRouter>
 
-       <Header />
+     
         <MainNav />
          <Container>
+          <UserProvider>
+         <Header />
         <Routes>
               <Route path="/" element={<MuseumMainPage />}></Route>
-              <Route path="/login" element={<Login />}></Route>
+                          <Route path="/login" element={<Login />}></Route>
+              <Route path="/favourite" element={<FavouritMuseumData />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/search" element ={<AdvancedSearch />}></Route>
               <Route path="/objects" element ={<MuseumObjects />}></Route>
@@ -42,6 +46,7 @@ function App() {
              <Route path ="/artworks/:id" element ={<ArticArtworkDetail/>}></Route>
              <Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />
         </Routes>
+        </UserProvider>
         </Container>
 
 </BrowserRouter>

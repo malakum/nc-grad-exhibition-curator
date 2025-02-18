@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
-//import { Form } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import MuseumObjects from "./MuseumObjects";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Row,Col } from "react-bootstrap";
 
 const Header = () =>{
 
-      const [searchField, setSearchField] = useState('cat');
+      const [searchField, setSearchField] = useState('sunflower');
        const navigate = useNavigate();
       
         //submitting Form async fucntion
@@ -23,20 +20,18 @@ const Header = () =>{
          
       }
       const handleMetro = (e) =>{
-          //  const  q= searchField;
+     
             console.log('searchfeild',searchField);
-           // console.log('q',q);
-          //  if (q){
+      
             navigate ("/objects" ,{state : { searchField : searchField}});
-         //   }
+      
       };
       const handleArtworks = (e) =>{
-          //  const  q= searchField;
+      
             console.log('searchfeild',searchField);
-           // console.log('q',q);
-          //  if (q){
+      
             navigate ("/artworks" ,{state : { searchField : searchField}});
-           // }
+      
       };
       const handleHome = (e) =>{
          
@@ -45,9 +40,9 @@ const Header = () =>{
       };
       
     return ( <>
-          <p>.......</p>
+         
          <h1> Art Exhibition Curator</h1>
-         <Form className="d-flex" onSubmit={submitForm}>
+         <Form className="d-flex" onSubmit={submitForm}>Search:
                   <Form.Control
                   type="search"
                   placeholder="Search"
@@ -55,40 +50,27 @@ const Header = () =>{
                   aria-label="Search"
                   onChange={(e) => {setSearchField(e.target.value)}}
                   />
-                  <Button type="submit" variant="success">Search</Button>
+                   
+                  {/* <Button type="submit" variant="success">Search</Button>
+                   */}
                </Form>
+               <Form.Text className="text-muted">
+               Seach String (ie: &quot;cat&quot;, &quot;mouse&quot;, &quot;sunflower&quot;, &quot;table&quot;, &quot;chair&quot;, etc.)
+            </Form.Text>
          <div>
-          
-         <Button onClick={handleMetro}> Metro Museums </Button>
-         {/* <Link
-                                         to={`/objects `} 
-                                          > Link for Metro Museum 
-                                    </Link> */}
-          </div>
-          <div>          
+          <Row>
+            <Col>
+            <Button onClick={handleMetro}> Metro Museums </Button>
+            </Col>
+            <Col> 
             <Button onClick={handleArtworks}> Artic Artworks </Button>
-         {/* <Link
-                                         to={`/artworks`} 
-                                          > Link for Artic Artwork
-                                    </Link>  */}
-                                                               </div>
-
-         <div>
-         <Button onClick={handleHome}>Home </Button>
-         {/* <Link
-                                         to={`/`}
-                                          > Link for Home
-                                    </Link>; 
-                                      </div>
-                                                               <Link
-                                         to={`/login`} 
-                                          > Link for Login Page
-                                    </Link>
-                                    <Link
-                                         to={`/register`} 
-                                          > Link for Register Page
-                                    </Link> */}
-                                    </div>
+            </Col>
+            <Col>
+            <Button onClick={handleHome}>Home </Button>
+            </Col>
+          </Row>
+          <p>......................</p>
+            </div>
 
     </>)
 }

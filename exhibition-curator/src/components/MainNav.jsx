@@ -76,14 +76,7 @@ console.log('location',location);
                                          to={`/search`} 
                                           > Advance Search
                                     </Link>
-                                    <Link className="nav-link"
-                                         to={`/objects `} 
-                                          > Link for Metro Museum 
-                                    </Link>
-                                    <Link className="nav-link"
-                                         to={`/artworks `} 
-                                          > Link for Artwork 
-                                    </Link>
+                  
                   {token 
                   && 
                   <Link className="nav-link"
@@ -144,16 +137,16 @@ console.log('location',location);
                </Nav>
                :
                <Nav className="ms-auto">
-                
+                   
                   <Link className="nav-link"
                                          to={`/login`} 
                                           > Login
                                     </Link>
                                            
-                                    <Link className="nav-link"
+                                    {/* <Link className="nav-link"
                                          to={`/register`} 
                                           > Register
-                                    </Link>
+                                    </Link> */}
 
                    {/* <Link href="/register" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={navigate("/register")}>Register</Nav.Link></Link>
                   <Link href="/login" passhref legacybehavior><Nav.Link onClick={(e) => {setIsExpanded(false)}} active={navigate("/login")}>Login</Nav.Link></Link>

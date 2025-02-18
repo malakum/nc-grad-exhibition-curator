@@ -1,7 +1,7 @@
-//import {jwt_decode} from "jwt-decode";
+
 import { jwtDecode } from "jwt-decode";
 
-
+const validUser = ['mala','peter','smith'];
 function setToken(token) {
   localStorage.setItem('access_token', token);
 }
@@ -33,23 +33,30 @@ export function removeToken() {
 }
 
 export async function authenticateUser(user, password) {
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-    method: "POST",
-    body: JSON.stringify({ userName: user, password: password }),
-    headers: {
-      "content-type": "application/json"
-    }
-  });
-
-  const data = await res.json();
-
-  if (res.status === 200) {
-    setToken(data.token);
+   if (validUser.includes(user)){
+    console.log(user,'is valid');
     return true;
-  } else {
-    throw new Error(data.message);
-  }
+   }
+   else {
+    console.log(user,'is not valid');
+    
+   }
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+  //   method: "POST",
+  //   body: JSON.stringify({ userName: user, password: password }),
+  //   headers: {
+  //     "content-type": "application/json"
+  //   }
+  // });
+
+  // const data = await res.json();
+
+  // if (res.status === 200) {
+  //   setToken(data.token);
+  //   return true;
+  // } else {
+  //   throw new Error(data.message);
+  // }
 }
 
 export async function registerUser(user, password, password2) {

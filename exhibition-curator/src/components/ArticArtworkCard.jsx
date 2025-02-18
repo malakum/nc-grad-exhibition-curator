@@ -40,17 +40,10 @@ const ArticArtworkCard = ({artwork_id}) =>{
     <>
     
      <Card style={{ width: "18rem", height: "25rem" }}>
-     {/* {artworkCard.thumbnail.lqip && (
-    <Card.Img variant="top" src={artworkCard.thumbnail.lqip
-      ?artworkCard.thumbnail.lqip
-      : `https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d`} alt ="artwork image" width="100px" height="100px"/>
-    
-  )} */}
-     {artworkCard.image_id &&(
+      {artworkCard.image_id &&(
     <Card.Img variant = "top" src = {`https://www.artic.edu/iiif/2/`+ artworkCard.image_id+`/full/100,/0/default.jpg` } alt ="artwork" width ="100px" height="100px"/>
    )}
-    {/* <p>{artworkCard.thumbnail.alt_text}</p> */}
-        {/* <p>{artworkCard.thumbnail.alt_text}</p> */}
+   
         <Card.Body >
     <Card.Title>{artworkCard.title ? artworkCard.title : "N/A"}</Card.Title>
     <Card.Text >
@@ -60,10 +53,10 @@ const ArticArtworkCard = ({artwork_id}) =>{
       <strong>Artist Display : </strong>
       {artworkCard.artist_display ? artworkCard.artist_display.slice(0,40) : "N/A"}
       <br />
-         {/* <p>Artwork Date Display : {artworkCard.date_display}</p>
-         <p>Artwrok Artist Display : {artworkCard.artist_display}</p> */}
-        
-         <Link
+      <strong>Artwork Id : </strong>
+      {artworkCard.id ? artworkCard.id : "N/A"}
+      <br />
+      <Link
                                               to={`/artworks/${artworkCard.id}`}
                                                > Link for Artwork detail
                                                 

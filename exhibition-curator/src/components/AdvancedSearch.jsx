@@ -9,7 +9,7 @@ import { searchHistoryAtom } from '../../store';
 import { addToHistory } from '../lib/userData';
 import { getMusObjects } from '../../utils/api';
 
-const  AdvancedSearch =() => {
+const  AdvancedSearch =(props) => {
 
 //using Atom
 const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
@@ -22,6 +22,7 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         medium: '',
         isOnView: false,
         isHighlight: false,
+        departmentId :''
         // q: ''
     },
 });
@@ -35,7 +36,8 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
       geoLocation: "",
       medium: "",
       isOnView: false,
-      isHighlight: false
+      isHighlight: false,
+      departmentId :1
       // q: ""
     }
 
@@ -47,20 +49,26 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
 
   //async function 
   async function submitForm(data) {
-    let queryString = "?";
+    let queryString = "";
    // queryString +=`${data.searchBy}=true`
     if(data.geoLocation){
-      queryString += `geoLocation=${data.geoLocation}`
+      queryString += `&geoLocation=${data.geoLocation}`
     }
+   
     if(data.medium){
       queryString += `&medium=${data.medium}`
     }
-   // queryString += `&q=${data.q}&isHighlight=${data.isHighlight}`;
-   queryString +=`&isOnView=${data.isOnView}&isHighlight=${data.isHighlight}&q='cat'`
+   
+    if(data.departmentId){
+      console.log(data.departmentId);
+
+      queryString += `&departmentId=${+data.departmentId}`
+    }
+
     console.log('query string in side advance search',queryString);
-    //  const res = await getMusObjects(queryString);
-            
-    //  console.log('advance search get meuseum objects',res.data);
+    console.log(props.getData);
+    props.getData(queryString);
+   
      
   //  router.push(`/artwork?${queryString}`)
   // navigate (`/search`);
@@ -72,34 +80,23 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     <>
       <p>Advance serach page</p>
       <Form onSubmit={handleSubmit(submitForm)}>
-        {/* <Row>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label>Search Query</Form.Label>
-              <Form.Control 
-              className={errors.q?.type === "required" && "is-invalid"}
-              type="text" 
-              placeholder="" name="q" 
-              {...register("q", { required: true })}
-              />
-            </Form.Group>
-          </Col>
-        </Row> */}
+       
         <Row>
-          <Col md={4}>
-            <Form.Label>Search By</Form.Label>
-            <Form.Select name="searchBy" className="mb-3"  {...register("searchBy")}>
-              <option value="title">Title</option>
-              <option value="tags">Tags</option>
-              <option value="artistOrCulture">Artist or Culture</option>
-            </Form.Select>
+            <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>Department Id</Form.Label>
+              <Form.Control type="number" placeholder="" name="departmentId" {...register("departmentId")}/>
+              <Form.Text className="text-muted">
+              Department Number  (ie 1,2,3,4,5, upto 13 )
+            </Form.Text>
+            </Form.Group>
           </Col>
           <Col md={4}>
             <Form.Group className="mb-3">
               <Form.Label>Geo Location</Form.Label>
               <Form.Control type="text" placeholder="" name="geoLocation" {...register("geoLocation")}/>
               <Form.Text className="text-muted">
-              Case Sensitive String (ie &quot;Europe&quot;, &quot;France&quot;, &quot;Paris&quot;, &quot;China&quot;, &quot;New York&quot;, etc.), with multiple values separated by the | operator
+              Case Sensitive String (ie &quot;Europe&quot;, &quot;France&quot;, &quot;Paris&quot;, &quot;China&quot;, &quot;New York&quot;, etc.)
             </Form.Text>
             </Form.Group>
           </Col>
@@ -108,27 +105,12 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
               <Form.Label>Medium</Form.Label>
               <Form.Control type="text" placeholder="" name="medium" {...register("medium")}/>
               <Form.Text className="text-muted">
-              Case Sensitive String (ie: &quot;Ceramics&quot;, &quot;Furniture&quot;, &quot;Paintings&quot;, &quot;Sculpture&quot;, &quot;Textiles&quot;, etc.), with multiple values separated by the | operator
+              Case Sensitive String (ie: &quot;Ceramics&quot;, &quot;Furniture&quot;, &quot;Paintings&quot;, &quot;Sculpture&quot;, &quot;Textiles&quot;, etc.)
             </Form.Text>
             </Form.Group>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Form.Check
-              type="checkbox"
-              label="Highlighted"
-              name="isHighlight"
-              {...register("isHighlight")}
-            />
-            <Form.Check
-              type="checkbox"
-              label="Currently on View"
-              name="isOnView"
-              {...register("isOnView")}
-            />
-          </Col>
-        </Row>
+      
         <Row>
           <Col>
             <br />

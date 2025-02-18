@@ -8,7 +8,7 @@ const museumApi = axios.create({
     baseURL: "https://api.artic.edu/api/v1/artworks",
   });
 
-  export const getMusObjects =  (queryStringMuseum) => {
+  export const getMusObjects =  async(queryStringMuseum) => {
          console.log(queryStringMuseum);
        return museumApi.get(`/search${queryStringMuseum}`);
     
