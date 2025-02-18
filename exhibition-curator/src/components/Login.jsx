@@ -1,14 +1,7 @@
 import { Card, Form, Alert, Button } from "react-bootstrap";
-//import { useState, useEffect } from 'react';
 import { authenticateUser } from "../lib/authenticate";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useAtom } from 'jotai';
-
-import { favouritesAtom } from '../../store'
-import { searchHistoryAtom } from '../../store';
-
-import { getFavourites, getHistory } from '../lib/userData';
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/userProvider";
 
@@ -27,8 +20,6 @@ const Login = (props) =>{
   const navigate =useNavigate();
  const location = useLocation();
 
-  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
-  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,10 +28,9 @@ const Login = (props) =>{
       await authenticateUser(user, password);
       setUsername(e.target.value);
             setIsValid(true);
-      //invoking before it redirect to favourites
+      
      // await updateAtoms();
-      //redirect to "/favourites" 
-      // the following need to be changed and checked
+      
     //  router.push("/favourites");
        navigate("/favourite");
     }catch(err){
@@ -49,15 +39,11 @@ const Login = (props) =>{
       setIsLoggedIn(true);
      setWarning(err.message);
     }
- // console.log(setLoggedInUser);
+ 
   }
-  //console.log('loged in user',setLoggedInUser);
+ 
   console.log('username',username);
-  //async await function updateAtoms
-  // async function updateAtoms(){
-  //   setFavouritesList(await getFavourites());
-  //   setSearchHistory(await getHistory());
-  // }
+  
 
   return (
     <>

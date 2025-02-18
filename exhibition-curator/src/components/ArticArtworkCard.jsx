@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-//import {fetchArticArtworkById, fetchMusObjectDetail} from "../../utils/api"
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-//import { useParams } from "react-router-dom";
-//import { BrowserRouter, Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getArtworkDetail } from "../../utils/api";
 

@@ -3,16 +3,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import { useAtom } from 'jotai';
-import { searchHistoryAtom } from '../../store';
-
-import { addToHistory } from '../lib/userData';
 import { getMusObjects } from '../../utils/api';
 
 const  AdvancedSearch =(props) => {
 
-//using Atom
-const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+
     
 //useform
 const { register, handleSubmit, setValue, formState: { errors } } = useForm({
@@ -27,8 +22,7 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     },
 });
 
-//middleware
-//const router = useRouter();
+
 
   useEffect(() => {
     let data = {
@@ -65,14 +59,9 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
       queryString += `&departmentId=${+data.departmentId}`
     }
 
-    console.log('query string in side advance search',queryString);
-    console.log(props.getData);
     props.getData(queryString);
    
-     
-  //  router.push(`/artwork?${queryString}`)
-  // navigate (`/search`);
-   // setSearchHistory(await addToHistory(queryString))
+  
   }
 
 

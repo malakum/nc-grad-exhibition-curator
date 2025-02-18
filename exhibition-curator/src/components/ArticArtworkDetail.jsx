@@ -12,19 +12,9 @@ const ArticArtworkDetail = () =>{
      const { id } =useParams();   
      console.log(id);
 
-  //const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-
-  //changing default value to false
   const [showAdded, setShowAdded] = useState(false);
 
-  
-  //using the useEffect hook
-  // useEffect(()=>{
-  //     setShowAdded(favouritesList?.includes(props.objectID))
-  // }, [favouritesList])
 
-
-  //async- await function favouritesClicked
   async function favouritesClickedArtwork() {
       if(showAdded){
          // setFavouritesList(await removeFromFavourites(props.objectID))

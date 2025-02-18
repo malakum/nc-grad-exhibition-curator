@@ -55,7 +55,7 @@ const Header = () =>{
                    */}
                </Form>
                <Form.Text className="text-muted">
-               Seach String (ie: &quot;cat&quot;, &quot;mouse&quot;, &quot;sunflower&quot;, &quot;table&quot;, &quot;chair&quot;, etc.)
+               Search String (ie: &quot;cat&quot;, &quot;mouse&quot;, &quot;sunflower&quot;, &quot;table&quot;, &quot;chair&quot;, etc.)
             </Form.Text>
          <div>
           <Row>

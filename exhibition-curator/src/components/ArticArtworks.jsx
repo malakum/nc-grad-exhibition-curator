@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {fetchArticArtworks} from "../../utils/api";
 import ArticArtworkCard from "./ArticArtworkCard";
-//import  Card  from "react-bootstrap/Card";
 import  Row  from "react-bootstrap/Row";
  import Pagination from 'react-bootstrap/Pagination';
  import  Col  from "react-bootstrap/Col";

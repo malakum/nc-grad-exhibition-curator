@@ -42,6 +42,7 @@ export default function FavouritArtWorkData() {
     } else {
       return (
         <>
+        <p>Favourite Artworks </p>
           <Row className="gy-4">
             {favouritesList?.map((currentObjectID, index) => (
               <Col lg={3} key={currentObjectID}>

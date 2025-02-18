@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-//import {fetchMusObjectDetail} from "../../utils/api";
 import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { getMusObjectDetail } from "../../utils/api";
-import { useAtom } from "jotai";
-import { favouritesAtom } from "../../store";
-import { atom } from "jotai";
+
 
 
 

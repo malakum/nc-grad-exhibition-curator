@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function FavouritMuseumData() {
  
-  const favouriteMuseumData = [{name:"mala",museumObjects:[110,120]} ,
+  const favouriteMuseumData = [{name:"mala",museumObjects:[110,220,333,444]} ,
                              {name:"smith",museumObjects:[220,120]},
                              {name:"peter",museumObjects:[330,120]}];
 
@@ -18,7 +18,7 @@ export default function FavouritMuseumData() {
          
         },[]);
                   
-   // setFavouritesList(favouriteMuseumData[0].museumObjects)  ;         
+   
 
    console.log('favourite list inside museum favourite',favouritesList);
   if(!favouritesList) return null;
@@ -42,6 +42,7 @@ export default function FavouritMuseumData() {
     } else {
       return (
         <>
+          <p>Favourite Metro Museum Objects</p>
           <Row className="gy-4">
             {favouritesList?.map((currentObjectID, index) => (
               <Col lg={3} key={currentObjectID}>
