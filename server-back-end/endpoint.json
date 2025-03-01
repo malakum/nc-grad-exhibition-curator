@@ -1,0 +1,125 @@
+{
+    "GET /api": {
+      "description": "serves up a json representation of all the available endpoints of the api"
+    },
+    "GET /api/favobjects/fav_user": {
+      "description": "serves an array of all objects of selected user",
+      "queries": [],
+      "exampleResponse": {
+        "favobjects": [
+          {
+            "fav_id": "11",
+            "fav_flag_id": "A",
+            "fav_object": "111",
+            "fav_user": "mala",
+            "created_at": "2018-05-30T15:59:13.341Z"
+                      }
+        ]
+      }
+    },
+    "GET /api/favobjects/fav_id": {
+      "description": "serves an  articles",
+      "queries": [],
+      "exampleResponse": {
+        "articles": [
+          {
+            "title": "Living in the shadow of a great man",
+            "topic": "mitch",
+            "author": "butter_bridge",
+            "body": "I find this existence challenging",
+            "created_at": "2020-07-09T20:11:00.000Z",
+            "votes": 100,
+            "comment_count" : "11"
+          }
+        ]
+      }
+    },
+    "GET /api/favobjects/fav_id/fav_object": {
+      "description": "serves an array of comments ",
+      "queries": [],
+      "exampleResponse": {
+        "comments": [
+          {
+            "comment_id": 2,
+             "votes" : 14,
+              "created_at": "2020-10-31T03:03:00.000Z",
+              "author": "butter_bridge",
+             "body" : "The beautiful thing about treasure is that it exists. Got to find out what kind of sheets these are; not cotton, not rayon, silky.",
+              "article_id": 1
+          }
+        ]
+      }
+    },
+    "POST /api/favobjects/fav_id/fav_object": {
+      "description": "serves a comment ",
+      "request":"newComment",
+      "queries": [],
+      "exampleResponse": {
+        "favobjects": [
+          {
+            "fav_id": 19,
+             "fav_flag_id" : "A",
+             "fav_object" :111,
+              "fav_user" :"mala",
+              "created_at": "2024-05-29T23:00:00.000Z"
+          }
+        ]
+      }
+    },
+    
+    "DELETE /api/favobjects/fav_id": {
+      "description": "serves Delete object from favobjects  ",
+      "request":"19",
+      "queries": [],
+      "exampleResponse": {
+        "comments": []
+      }
+    },
+    "GET /api/users": {
+      "description": "serves an array of all users",
+      "queries": [],
+      "exampleResponse": {
+        "users": [
+          {
+            "user_name": "mala",
+            "user_password":  "mala123",
+            "user_email_id": "mala@gmail.com"
+          }
+        ]
+      }
+    },
+    "POST /api/users/user_name": {
+        "description": "serves a record of particular user",
+        "queries": [],
+        "exampleResponse": {
+          "users": [
+            {
+              "user_name": "mala",
+              "user_password":  "mala123",
+              "user_email_id": "mala@gmail.com"
+            }
+          ]
+        }
+      },
+      "PATCH /api/users/user_id": {
+        "description": "serves an array of all users",
+        "queries": [],
+        "exampleResponse": {
+          "users": [
+            {
+              "user_name": "mala",
+              "user_password":  "mala2",
+              "user_email_id": "mala@gmail.com"
+            }
+          ]
+        }
+      },
+      "DELETE /api/users/user_id": {
+        "description": "delete the selected  users",
+        "queries": [],
+        "exampleResponse": {
+          "users": []
+        }
+      }
+  }
+  
