@@ -15,9 +15,9 @@ const seed = ({ favobjectsData, usersData }) => {
     .then(() => {
       const usersTablePromise = db.query(`
       CREATE TABLE users (
-        user_name VARCHAR PRIMARY KEY,
-        user_password VARCHAR NOT NULL,
-        user_email_id VARCHAR 
+        user_name VARCHAR(50) PRIMARY KEY,
+        user_password VARCHAR(50) NOT NULL,
+        user_email VARCHAR(200) 
       );`);
 
       return Promise.all([ usersTablePromise]);
@@ -34,14 +34,15 @@ const seed = ({ favobjectsData, usersData }) => {
     })
     .then(() => {
        const insertUsersQueryStr = format(
-        'INSERT INTO users ( user_name, user_password, user_email_id) VALUES %L;',
-        usersData.map(({ user_name, user_password, user_email_id }) => [
+        'INSERT INTO users ( user_name, user_password, user_email) VALUES %L RETURNING *;',
+        usersData.map(({ user_name, user_password, user_email }) => [
           user_name,
           user_password,
-          user_email_id
+          user_email
         ])
       );
     // console.log(usersData);
+     // return db.query(insertUsersQueryStr);
       const usersPromise = db.query(insertUsersQueryStr);
 
       return Promise.all([ usersPromise]);

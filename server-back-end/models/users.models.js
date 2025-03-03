@@ -1,15 +1,13 @@
 const users = require("../db/data/test-data/users");
 const db = require("../db/connection");
-//const format = require("pg-format");
+const format = require("pg-format");
 
 
 exports.checkUser = (user_name)=>{
   return db.query(`SELECT * FROM users WHERE user_name =$1 `,[user_name])
   .then (({rows})=>{
-    if (!rows.length){
-      return Promise.reject({status:404 , msg: 'Not Found'})
-  }
-    return rows;
+          console.log('rows inside check user in users model',rows);
+          return rows;
   })
 };
 
@@ -21,33 +19,45 @@ exports.selectUsers = () => {
   });
 };
 
-exports.createUser = () => {
-    const { user_name, user_password,user_email_id} = newUser;
+exports.createUser = (user_name ,newUser) => {
+    const {  user_password,user_email} = newUser;
+    console.log('inside create user in user model',user_name, user_password,user_email);
                                    const newUserArr = [];
-                                    newUserArr.push(user_name,user_password,user_email_id,);
+                                    newUserArr.push(user_name,user_password,user_email);
                             
-                                 const favobjectInsertQuery = format(`INSERT INTO favobjects(
-                                                                    fav_flag,fav_object,fav_user,created_at)
-                                                                    VALUES %L RETURNING*`,[newFavobjectArr]);
+                                 const insertUserQuery = format(`INSERT INTO users(
+                                                                    user_name,user_password,user_email)
+                                                                    VALUES %L RETURNING*`,[newUserArr]);
                             
-                                 return db.query(favobjectInsertQuery)
+                                 return db.query(insertUserQuery)
                                    .then(({ rows }) => {
+                                    console.log('rows inside creat user inside usermodel',rows);
+                                    console.log('rows[0] inside creat user inside usermodel',rows[0]);
                                  
                                   return rows[0];
                                   })
   
 };
 
- exports.updateUserByUserName = async(user_name) => {
-      return db.query(`UPDATE users
-                       SET user_password = $1
-                       WHERE user_name = $2 `,[user_password,user_name] )
-                     
-     .then(({ rows }) => {
+ exports.updateUserByUserName = (user_name,updateUser) => {
+  const { user_password } = updateUser;
+ 
+
+  console.log('user name password inside update user by user name in user models',user_name, user_password);
+
+     const updateUserQuery = format(`UPDATE users
+                                     SET user_password = '${user_password}'
+                                     WHERE user_name = '${user_name}' RETURNING*`);
+                                  
+      console.log(updateUserQuery);
+      return db.query(updateUserQuery)
+         .then(({ rows }) => {
+          console.log('row inside update user by user name inside user model',rows);
       
-       return {rows};
-     });
-     
+       return rows[0];
+     })
+     .catch((error) => {console.log(error)});
+    // }) 
      };   
 
  exports.deleteUserRow = (user_name) => {

@@ -19,7 +19,7 @@ describe("/api", () => {
       .expect(200)
       .then(({ body }) => {
         const { allApi } = body;
-        console.log('all api data',allApi);
+       // console.log('all api data',allApi);
         expect (allApi).toEqual(output);
       });
   });
@@ -33,38 +33,44 @@ describe("/api/users", () => {
       .then(({ body }) => {
         const { users } = body;
        console.log(users.rows.length);
-       console.log(users.rows);
-     //   expect(users.rows).toHaveLength(4);
+       //console.log(users.rows);
+       expect(users.rows).toHaveLength(3);
        
           users.rows.forEach((user) => {
           expect(user).toMatchObject({
             
           user_name: expect.any(String),
-           user_password: expect.any(String)
-         //  user_email_id: expect.any(String)
+           user_password: expect.any(String),
+           user_email: expect.any(String)
             });
         });
       });
   });
 });
 
-const newUser = [{ user_name: 'rama',
-  user_password: 'rama1',
-  user_email_id :'rama@gmail.com'}];
+
+
 describe("/api/users/:user_name", () => {
+  const newUser = { user_name: 'rama',
+                    user_password: 'rama1',
+                    user_email :'rama@gmail.com'};
+
   test("POST:201 add new user to be registered ", () => {
     return request(app)
       .post("/api/users/rama")
-        .send(newUser)
-    .expect(201)
-    .then(({ body }) => {
-    
-        const {user} = body
+      .send(newUser)
+      .expect(201)
+      .then(({ body} ) => {
+      console.log('user inside post user app test',body);
+        const {users} = body
+
+       console.log('user inside post user app test ',users);
    
-        expect(user).toMatchObject({
+        expect(users).toMatchObject({
+
           user_name: 'rama',
           user_password: 'rama1',
-          user_email_id :'rama@gmail.com',
+          user_email :'rama@gmail.com'
                  
         });
      
@@ -72,19 +78,20 @@ describe("/api/users/:user_name", () => {
       });  
     });
 
+    const updateUser = { user_password : "mala2"};
       test("PATCH:202 password of user to be changed", () => {
         return request(app)
-          .patch("/api/users/rama")
-            .send(newUser)
+          .patch("/api/users/mala")
+            .send(updateUser)
         .expect(201)
         .then(({ body }) => {
         
-            const {user} = body
+            const {users} = body
        
-            expect(user).toMatchObject({
-              user_name: 'rama',
-              user_password: 'rama2',
-              user_email_id :'rama@gmail.com',
+            expect(users).toMatchObject({
+              user_name: 'mala',
+              user_password: 'mala2',
+              user_email :'malakumari@gmail.com',
                      
             });
          
@@ -96,12 +103,12 @@ describe("/api/users/:user_name", () => {
       .delete("/api/users/rama")
       .expect(204)
       .then(({ body }) => {
-        const  user  = body;
-        expect(user).toEqual({});
+        const  users  = body;
+        expect(users).toEqual({});
       });
   });
-   
 });
+
 
 describe("/api/favobjects/:fav_user", () => {
   test("GET:200 sends an favourite objects of passed user to the client", () => {
@@ -157,6 +164,5 @@ describe("/api/favobjects/:fav_user", () => {
           const  favobject  = body;
           expect(favobject).toEqual({});
         });
-    });
-    
+    });   
   });
