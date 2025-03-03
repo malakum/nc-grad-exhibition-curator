@@ -10,10 +10,10 @@ exports.getUsers = (req, res, next) => {
 exports.postUser = (req, res, next) => {
     const {user_name} = req.params;
     const newUser = req.body;
-    console.log('user name inside post user in controllers', user_name);
-    console.log('new user inside post user in controllers',newUser);
+    // console.log('user name inside post user in controllers', user_name);
+    // console.log('new user inside post user in controllers',newUser);
     return checkUser(user_name).then((userExist)=>{
-      console.log(userExist);
+      // console.log(userExist);
       if (!userExist || userExist.length===0){
            createUser(user_name,newUser).then((users) => {        
                                                  res.status(201).send({ users});

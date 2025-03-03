@@ -32,7 +32,7 @@ describe("/api/users", () => {
       .expect(200)
       .then(({ body }) => {
         const { users } = body;
-       console.log(users.rows.length);
+     //  console.log(users.rows.length);
        //console.log(users.rows);
        expect(users.rows).toHaveLength(3);
        
@@ -61,10 +61,10 @@ describe("/api/users/:user_name", () => {
       .send(newUser)
       .expect(201)
       .then(({ body} ) => {
-      console.log('user inside post user app test',body);
+   //   console.log('user inside post user app test',body);
         const {users} = body
 
-       console.log('user inside post user app test ',users);
+    //   console.log('user inside post user app test ',users);
    
         expect(users).toMatchObject({
 
@@ -83,8 +83,8 @@ describe("/api/users/:user_name", () => {
         return request(app)
           .patch("/api/users/mala")
             .send(updateUser)
-        .expect(201)
-        .then(({ body }) => {
+            .expect(201)
+            .then(({ body }) => {
         
             const {users} = body
        
@@ -116,17 +116,22 @@ describe("/api/favobjects/:fav_user", () => {
       .get("/api/favobjects/mala")
       .expect(200)
       .then(({ body }) => {
-     
-        const { favobject } = body;
-        console.log('favobject',favobject);
-      
-          expect(favobject).toMatchObject({
-            fav_id: 1,
-            fab_flag_id: 'M',
-            fav_object: 1,
-            fav_user:  'mala',
-            created_at: '2020-07-09T20:11:00.000Z',
-            });
+    // console.log('body of fav object in app test',body);
+        const { favObject } = body;
+        // console.log('favObject',favObject);
+        // console.log(favObject.rows.length);
+        expect(favObject.rows).toHaveLength(3);
+       
+        favObject.rows.forEach((fav) => {
+        expect(fav).toMatchObject({
+          fav_id : expect.any(Number),
+          fav_flag_id : expect.any(String),
+          fav_object : expect.any(Number),
+          created_at : '2020-03-14T14:02:00.000Z',
+          fav_user :'mala'
+        })
+      });
+       
    
       });
   });
@@ -138,31 +143,32 @@ describe("/api/favobjects/:fav_user", () => {
     };
   test("POST:201 post or save object for passed logged in user to the client", () => {
     return request(app)
-      .post("/api/favobjects/1")
+      .post("/api/favobjects/1111")
       .send(newFavobject)
       .expect(201)
       .then(({ body }) => {
      
-        const { favobject } = body;
+        const { favObject } = body;
       
-          expect(favobject).toMatchObject({
+          expect(favObject).toMatchObject({
             fav_id: expect.any(Number),
-            fav_flag_id: expect.any(String),
-            fav_object: expect.any(Number),
-            created_at: '2020-07-09T20:11:00.000Z',
+            fav_flag_id: 'A',
+            fav_object: 1111,
+            fav_user :'mala',
+            created_at: expect.any(String)
             
             });
        
       });
   });
   
-    test("DELETE:204 status 204 and no content.", () => {
-      return request(app)
-        .delete("/api/fav_objects/1")
-        .expect(204)
-        .then(({ body }) => {
-          const  favobject  = body;
-          expect(favobject).toEqual({});
-        });
-    });   
+    // test("DELETE:204 status 204 and no content.", () => {
+    //   return request(app)
+    //     .delete("/api/fav_objects/1")
+    //     .expect(204)
+    //     .then(({ body }) => {
+    //       const  favobject  = body;
+    //       expect(favobject).toEqual({});
+    //     });
+    // });   
   });

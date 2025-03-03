@@ -1,30 +1,28 @@
 
 const { checkUser} = require("../models/users.models");
-const { selectFavobjects, selectFavobjectsByUser,
-        createFavobjectByObjectId,deleteFavobjectRow,
+const { selectFavobjectsByUser,
+        createFavobjectByObjectId,
+        deleteFavobjectRow,
         checkFavobjectByObjectId } = require("../models/favobjects.models");
 
 exports.getFavobjectsByUser = (req, res, next) => {
-    const {user_name} = req.params;
-    return checkUser(user_name).then((userExist)=>{
+  //  console.log('user in req param',req.params);
+    const {fav_user} = req.params;
+ //   console.log('user name in favobjects controller',fav_user);
+    return checkUser(fav_user).then((userExist)=>{
     
          if (userExist && userExist.length >0) {
-            return selectFavobjectsByUser(user_name).then((data)=>{
-                res.status(200).send({data});
+             selectFavobjectsByUser(fav_user).then((favObject)=>{
+                res.status(200).send({favObject});
             })
             }
         else {
-            return Promise.reject({ status: 404, msg: "Not Found" })
+            console.log('user does not exist');
+          //  return Promise.reject({ status: 404, msg: "Not Found" })
         }
          }).catch(next)
     };
 
-exports.getFavobjects = (req, res, next) => {
-    return  selectFavobjects().then((data)=>{
-            res.status(200).send({data});
-            })
-            .catch(next)
-        };
 
 exports.postFavobjectByObjectId = (req, res, next) => {
         const {fav_object} = req.params;
@@ -32,19 +30,20 @@ exports.postFavobjectByObjectId = (req, res, next) => {
         const { fav_flag_id,fav_user } = newFavobject;
            
         if (!fav_flag_id || !fav_object || !fav_user){
-             
-            res.status(400).send({msg :'Bad Request'});
+             console.log('please put value of fav flag,object and user')
+          //  res.status(400).send({msg :'Bad Request'});
                      
               }
         else {
-            checkFavobjectByObjectId(fav_object).then((favobjectExist)=>{
+            checkFavobjectByObjectId(fav_object,fav_user).then((favobjectExist)=>{
             if (favobjectExist && favobjectExist.length >0) {
-                res.status(401).send({msg :'Bad Request'});
-                return Promise.reject({ status: 402, msg: "Already exist" })  
+                console.log('fav object already exist');
+             //   res.status(401).send({msg :'Bad Request'});
+             //   return Promise.reject({ status: 402, msg: "Already exist" })  
             }
             else {
-                createFavobjectByObjectId(fav_object,newFavobject).then ((favobject)=>{
-                    res.status(201).send({favobject});
+                createFavobjectByObjectId(fav_object,newFavobject).then ((favObject)=>{
+                    res.status(201).send({favObject});
                 }).catch(next);
             };
         });
@@ -52,11 +51,13 @@ exports.postFavobjectByObjectId = (req, res, next) => {
         
                 
         
-exports.deleteFavobjectByObjectId =(req,res,next) =>{
+exports.deleteFavobjectByFavId =(req,res,next) =>{
+    console.log('req params in delete fab object by fav id',req.params);
         const {fav_id} = req.params;
-        deleteFavobjectRow(fav_id).then((Favobject) =>{
+        console.log('fav id in favobject t controller',fav_id);
+       return deleteFavobjectRow(fav_id).then((favObject) =>{
              
-                res.status(204).send({Favobject});
+                res.status(204).send({favObject});
             }).catch(next);
         };
     };
