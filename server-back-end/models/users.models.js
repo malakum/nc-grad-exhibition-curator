@@ -6,7 +6,7 @@ const format = require("pg-format");
 exports.checkUser = (user_name)=>{
   return db.query(`SELECT * FROM users WHERE user_name =$1 `,[user_name])
   .then (({rows})=>{
-          // console.log('rows inside check user in users model',rows);
+        //  console.log('rows inside check user in users model',rows);
           return rows;
   })
 };

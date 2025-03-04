@@ -172,3 +172,129 @@ describe("/api/favobjects/:fav_user", () => {
     //     });
     // });   
   });
+
+  describe("/api/favobjectsmetro/:fav_user", () => {
+    test("GET:200 sends an favourite objects of passed user to the client", () => {
+      return request(app)
+        .get("/api/favobjectsmetro/mala")
+        .expect(200)
+        .then(({ body }) => {
+      // console.log('body of fav object in app test',body);
+          const { favObject } = body;
+          // console.log('favObject',favObject);
+          // console.log(favObject.rows.length);
+         // expect(favObject.rows).toHaveLength(3);
+         
+          favObject.rows.forEach((fav) => {
+          expect(fav).toMatchObject({
+            fav_id : expect.any(Number),
+            fav_flag_id : expect.any(String),
+            fav_object : expect.any(Number),
+            created_at : '2020-03-14T14:02:00.000Z',
+            fav_user :'mala'
+          })
+        });
+         
+     
+        });
+    });
+  
+    const newFavobject = {
+      fav_flag_id :"M",
+      fav_object :2222,
+      fav_user :"mala"
+      };
+    test("POST:201 post or save object for passed logged in user to the client", () => {
+      return request(app)
+        .post("/api/favobjectsmetro/2222")
+        .send(newFavobject)
+        .expect(201)
+        .then(({ body }) => {
+       
+          const { favObject } = body;
+        
+            expect(favObject).toMatchObject({
+              fav_id: expect.any(Number),
+              fav_flag_id: 'M',
+              fav_object: 2222,
+              fav_user :'mala',
+              created_at: expect.any(String)
+              
+              });
+         
+        });
+    });
+    
+      // test("DELETE:204 status 204 and no content.", () => {
+      //   return request(app)
+      //     .delete("/api/fav_objects/1")
+      //     .expect(204)
+      //     .then(({ body }) => {
+      //       const  favobject  = body;
+      //       expect(favobject).toEqual({});
+      //     });
+      // });   
+    });
+
+    describe("/api/favobjectsart/:fav_user", () => {
+      test("GET:200 sends an favourite objects of passed user to the client", () => {
+        return request(app)
+          .get("/api/favobjectsart/mala")
+          .expect(200)
+          .then(({ body }) => {
+        // console.log('body of fav object in app test',body);
+            const { favObject } = body;
+            // console.log('favObject',favObject);
+            // console.log(favObject.rows.length);
+           // expect(favObject.rows).toHaveLength(3);
+           
+            favObject.rows.forEach((fav) => {
+            expect(fav).toMatchObject({
+              fav_id : expect.any(Number),
+              fav_flag_id : expect.any(String),
+              fav_object : expect.any(Number),
+              created_at : '2020-03-14T14:02:00.000Z',
+              fav_user :'mala'
+            })
+          });
+           
+       
+          });
+      });
+    
+      const newFavobject = {
+        fav_flag_id :"A",
+        fav_object :3333,
+        fav_user :"mala"
+        };
+      test("POST:201 post or save object for passed logged in user to the client", () => {
+        return request(app)
+          .post("/api/favobjectsart/3333")
+          .send(newFavobject)
+          .expect(201)
+          .then(({ body }) => {
+         
+            const { favObject } = body;
+          
+              expect(favObject).toMatchObject({
+                fav_id: expect.any(Number),
+                fav_flag_id: 'A',
+                fav_object: 3333,
+                fav_user :'mala',
+                created_at: expect.any(String)
+                
+                });
+           
+          });
+      });
+      
+        // test("DELETE:204 status 204 and no content.", () => {
+        //   return request(app)
+        //     .delete("/api/fav_objects/1")
+        //     .expect(204)
+        //     .then(({ body }) => {
+        //       const  favobject  = body;
+        //       expect(favobject).toEqual({});
+        //     });
+        // });   
+      });

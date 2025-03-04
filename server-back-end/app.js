@@ -10,6 +10,9 @@ const { getAllApi }= require("./controllers/allApi.controllers.js");
 const { getUsers, postUser , patchUserByUserName, deleteUserByUserName} = require("./controllers/users.controllers.js");
 
 const { getFavobjectsByUser,postFavobjectByObjectId,
+  getFavobjectsMetroByUser,postFavobjectMetroByObjectId,
+  getFavobjectsArtByUser,postFavobjectArtByObjectId,
+        
   deleteFavobjectByFavId } = require("./controllers/favobjects.controllers.js");
 
 //app.use(cors());
@@ -26,8 +29,12 @@ app.delete('/api/users/:user_name', deleteUserByUserName);
 
 app.post('/api/favobjects/:fav_object', postFavobjectByObjectId);
 app.get('/api/favobjects/:fav_user', getFavobjectsByUser);
+app.post('/api/favobjectsmetro/:fav_object', postFavobjectMetroByObjectId);
+app.get('/api/favobjectsmetro/:fav_user', getFavobjectsMetroByUser);
+app.post('/api/favobjectsart/:fav_object', postFavobjectArtByObjectId);
+app.get('/api/favobjectsart/:fav_user', getFavobjectsArtByUser);
 
-//app.delete('/api/favobjects/:fav_id', deleteFavobjectByFavId);
+//app.delete('/api/favobjects/:fav_id/delete', deleteFavobjectByFavId);
 
 //app.delete('/api/favobject'  ,deleteFavobjectByFavId);
 
