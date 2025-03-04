@@ -48,7 +48,7 @@ export default function MainNav() {
                                          to={`/login`} 
                                           > Login
                                     </Link>
-               
+                 {/* // <p>user name : {user}</p> */}
                </Nav>
              
          

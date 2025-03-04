@@ -1,8 +1,11 @@
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from 'react-bootstrap/Button';
 import MuseumObjectCard from "./MuseumObjectCard";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function FavouritMuseumData() {
  
@@ -10,9 +13,48 @@ export default function FavouritMuseumData() {
                              {name:"smith",museumObjects:[220,120]},
                              {name:"peter",museumObjects:[330,120]}];
 
-    const [favouritesList,setFavouritesList] =useState([])   ;   
+    const [favouritesList,setFavouritesList] =useState([])   ; 
+
+    const navigate = useNavigate();
+
+     const location = useLocation();
+
+     let loggedInUser1 = '';
+
+     if (location.state){
+      if (location.state.loggedInUser){
+          loggedInUser1 = location.state.loggedInUser;
+       }
+       if (location.state.user){
+        loggedInUser1 = location.state.user;
+     }
+     };
+     let newData = [];
+     let indexData = 0;
+     for (let i=0; i<3; i++){
+      if (favouriteMuseumData[i].name === loggedInUser1)
+      {
+          newData = favouriteMuseumData[i].museumObjects;
+          indexData = i;
+      }
+     };
+     
+     console.log('logged in user in fav museum data',loggedInUser1);
+     console.log('new data ',newData);
+
+     const handleFavData = (e) =>{
+    
+      navigate ("/favourite",{state : { loggedInUser1 : loggedInUser1}});
+
+};
+const handleHome = (e) =>{
+   
+      navigate ("/");
+      
+};
+
     useEffect(() =>{
-      const data1= favouriteMuseumData[0].museumObjects;
+      const data1= favouriteMuseumData[indexData].museumObjects;
       console.log(data1);
       setFavouritesList(data1)  ; 
          
@@ -42,6 +84,7 @@ export default function FavouritMuseumData() {
     } else {
       return (
         <>
+          <p>Logged in User : {loggedInUser1}</p>
           <p>Favourite Metro Museum Objects</p>
           <Row className="gy-4">
             {favouritesList?.map((currentObjectID, index) => (
@@ -51,6 +94,15 @@ export default function FavouritMuseumData() {
               </Col>
             ))}
           </Row>
+          <Row>
+            <Col>
+            <Button onClick={handleFavData}> Favourite Data page </Button>
+            </Col>
+            <Col>
+            <Button onClick={handleHome}>Home </Button>
+            </Col>
+          </Row>
+
         </>
       );
     }

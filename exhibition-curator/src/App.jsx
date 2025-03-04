@@ -17,6 +17,8 @@ import MainNav from './components/MainNav';
 import AdvancedSearch from './components/AdvancedSearch';
 import { UserProvider } from './contexts/userProvider';
 import FavouritMuseumData from './components/FavouriteMuseumData';
+import FavouriteData from './components/FavouriteData';
+import FavouritArtWorkData from './components/FavouriteArtWorkData';
 
 function App() {
   
@@ -33,7 +35,9 @@ function App() {
         <Routes>
               <Route path="/" element={<MuseumMainPage />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              <Route path="/favourite" element={<FavouritMuseumData />}></Route>
+              <Route path="/favourite" element={<FavouriteData />}></Route>
+              <Route path="/favourite/artworks" element={<FavouritArtWorkData />}></Route>
+              <Route path="/favourite/metro" element={<FavouritMuseumData />}></Route>
               <Route path="/search" element ={<AdvancedSearch />}></Route>
               <Route path="/objects" element ={<MuseumObjects />}></Route>
              <Route path="/objects/:objectID" element ={<MuseumObjectDetail />}></Route>

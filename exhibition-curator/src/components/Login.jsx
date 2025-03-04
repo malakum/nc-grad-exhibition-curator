@@ -20,6 +20,8 @@ const Login = (props) =>{
   const navigate =useNavigate();
  const location = useLocation();
 
+ //console.log('log in user in login page',setLoggedInUser, setIsLoggedIn);
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,12 +29,24 @@ const Login = (props) =>{
     try{
       await authenticateUser(user, password);
       setUsername(e.target.value);
+    //  console.log(setUsername);
+      
             setIsValid(true);
+            const loggedUser = user;
+      setLoggedInUser(loggedUser);
+      setIsLoggedIn(true);
+    //  console.log('log in user in login page in handle submit',setLoggedInUser, setIsLoggedIn);
+    console.log('logged user',loggedUser,user);
       
      // await updateAtoms();
       
     //  router.push("/favourites");
-       navigate("/favourite");
+    navigate ("/favourite" ,{state : { user : user}});
+    // navigate ("/favourite/metro" ,{state : {user : user}});
+    // navigate ("/favourite/artworks" ,{state : { user : user}});
+   
+   //    navigate("/favourite");
+    
     }catch(err){
       const loggedUser = user[0];
       setLoggedInUser(loggedUser);
