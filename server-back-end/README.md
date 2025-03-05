@@ -1,18 +1,17 @@
- Northcoders News API
+ NC GRAD EXHIBITION CURATOR API
 
-For instructions, please head over to [L2C NC News]
+For instructions, 
 
-This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering 
+This portfolio project was created as part of new Project in Software Engineering 
 
 CREATE two environment file as .env.development and .env.test.
 # NC grad Exhibition  API
 
 ## About
-In this project I have created a API for a news review website (similar to reddit). This api has multiple endpoints. Please use the /api endpoint to see a list of available endpoints, along with requirements for request bodies and available queries.
+In this project I have created a API for exhibition curator review website (similar to metro museum website) to  store user data and favourite museum objectId and artworks data. This api has multiple endpoints. Please use the /api endpoint to see a list of available endpoints, along with requirements for request bodies and available queries.
 
 ## Link 
 Hosted version can be found here
-
 
 ## Set-up
 
@@ -53,21 +52,21 @@ npm i supertest
 ### Setting up environments
 You will need to create two .env files in root:  .env.test and .env.development 
 
-.env.development file should contain the line PGDATABASE=nc_news 
+.env.development file should contain the line PGDATABASE=nc_grad_exhibition 
 
-.env.test file should contain the line PGDATABASE=nc_news_test
+.env.test file should contain the line PGDATABASE=nc_grad_exhibition_test
 
 The database specified in .env.test will be accessed when running tests, and the database specified in .env.development will be used when running tests in development enviornment. Make sure that these .env files are included in .gitignore.
 
 ### Seeding local database
 In order to create local databases that the app can access, and seed them with data as contained in the /db/data/test-data and /db/data/development-data folders, you will first need to set up the databases. To do this open up PSQL in your terminal by using the psql command, and then execute the following commands.
 ```
-    DROP DATABASE IF EXISTS nc_news_test;
-    DROP DATABASE IF EXISTS nc_news;
+    DROP DATABASE IF EXISTS nc_grad_exhibition_test;
+    DROP DATABASE IF EXISTS nc_grad_exhibition;
 ```
 ```
-    CREATE DATABASE nc_news_test;
-    CREATE DATABASE nc_news;
+    CREATE DATABASE nc_grad_exhibition_test;
+    CREATE DATABASE nc_grad_exhibition;
 ```
 ## Running tests
 
