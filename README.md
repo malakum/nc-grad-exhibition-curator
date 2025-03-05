@@ -19,7 +19,7 @@ Secondly, To develop a modern, responsive user interface for searching and viewi
 
 ## Functionality
 
-To use the application, User first put some search criteria such as mouse ,sunflower etc and then press any one button to chechk data from two different Museum and then  App will render the output . 
+To use the application, User fisrt select login page with valid user id . Here valid user id are mala ,peter and smith . then user can put some search criteria such as mouse ,sunflower etc and then press any one button to chechk data from two different Museum and then  App will render the output . Here user can select favourite data from museum and artworks.
 
 ## Setup
 
@@ -57,6 +57,8 @@ An online hosted version of this repository can be found at:
 https://euphonious-strudel-18e6a7.netlify.app/
 
 https://extraordinary-axolotl-fccdc6.netlify.app/
+
+https://admirable-tarsier-ec30d9.netlify.app/
 
 
 
