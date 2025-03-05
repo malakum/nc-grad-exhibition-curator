@@ -19,7 +19,7 @@ Secondly, To develop a modern, responsive user interface for searching and viewi
 
 ## Functionality
 
-To use the application, User fisrt select login page with valid user id . Here valid user id are mala ,peter and smith . then user can put some search criteria such as mouse ,sunflower etc and then press any one button to chechk data from two different Museum and then  App will render the output . Here user can select favourite data from museum and artworks.
+To use the application, User fisrt select login page with valid user id . Here valid user id are mala ,peter and smith with any password. Then user can put some search criteria such as mouse ,sunflower etc and then press any one button to check data from two different Museum and then  App will render the output . Here user can select favourite data from museum and artworks also.
 ## Setup
 
 ### System requirements
