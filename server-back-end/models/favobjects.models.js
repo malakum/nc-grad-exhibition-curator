@@ -10,18 +10,18 @@ exports.selectFavobjectsByUser = (fav_user) => {
                   })};
 
                   exports.selectFavobjectsMetroByUser = (fav_user) => {
-                    console.log('user name in fav object models',fav_user);
+                  //  console.log('user name in fav object models',fav_user);
                      return db.query(`SELECT * FROM favobjects WHERE fav_user = $1 AND fav_flag_id ='M' `,[fav_user])
                                      .then(({rows}) => {
-                                      console.log('rows of fav objects in favobject models',rows);
+                                     // console.log('rows of fav objects in favobject models',rows);
                                        return {rows}
                                      })};
               
                                      exports.selectFavobjectsArtByUser = (fav_user) => {
-                                       console.log('user name in fav object models',fav_user);
+                            //           console.log('user name in fav object models',fav_user);
                                        return db.query(`SELECT * FROM favobjects WHERE fav_user = $1 AND fav_flag_id='A' `,[fav_user])
                                                        .then(({rows}) => {
-                                                         console.log('rows of fav objects in favobject models',rows);
+                                                      //   console.log('rows of fav objects in favobject models',rows);
                                                          return {rows}
                                                        })};
                                                    
@@ -74,11 +74,11 @@ exports.selectFavobjectsByUser = (fav_user) => {
                              const favobjectInsertQuery = format(`INSERT INTO favobjects(
                                                                 fav_flag_id,fav_object,fav_user,created_at)
                                                                 VALUES %L RETURNING*`,[newFavobjectArr]);
-                                                                console.log('favobjectInsertQuery',favobjectInsertQuery);
+                                                   //             console.log('favobjectInsertQuery',favobjectInsertQuery);
                         
                              return db.query(favobjectInsertQuery)
                                .then(({ rows }) => {
-                                console.log('create favobjectsby objectid in favobjectsmodels',rows[0]);
+                          //      console.log('create favobjectsby objectid in favobjectsmodels',rows[0]);
                               return rows[0];
                               })
                             
@@ -95,11 +95,11 @@ exports.selectFavobjectsByUser = (fav_user) => {
                            const favobjectInsertQuery = format(`INSERT INTO favobjects(
                                                               fav_flag_id,fav_object,fav_user,created_at)
                                                               VALUES %L RETURNING*`,[newFavobjectArr]);
-                                                             console.log('favobjectInsertQuery',favobjectInsertQuery);
+                                                      //       console.log('favobjectInsertQuery',favobjectInsertQuery);
                       
                            return db.query(favobjectInsertQuery)
                              .then(({ rows }) => {
-                              console.log('create favobjectsby objectid in favobjectsmodels',rows[0]);
+                  //            console.log('create favobjectsby objectid in favobjectsmodels',rows[0]);
                             return rows[0];
                             })
                           
