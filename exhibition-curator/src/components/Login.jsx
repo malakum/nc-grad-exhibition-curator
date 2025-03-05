@@ -19,6 +19,7 @@ const Login = (props) =>{
   const [password, setPassword] = useState("");
   const navigate =useNavigate();
  const location = useLocation();
+ let loggedUser = '';
 
  //console.log('log in user in login page',setLoggedInUser, setIsLoggedIn);
 
@@ -28,25 +29,13 @@ const Login = (props) =>{
 
     try{
       await authenticateUser(user, password);
-      setUsername(e.target.value);
-    //  console.log(setUsername);
-      
-            setIsValid(true);
-            const loggedUser = user;
-      setLoggedInUser(loggedUser);
-      setIsLoggedIn(true);
-    //  console.log('log in user in login page in handle submit',setLoggedInUser, setIsLoggedIn);
-    console.log('logged user',loggedUser,user);
-      
-     // await updateAtoms();
-      
-    //  router.push("/favourites");
-    navigate ("/favourite" ,{state : { user : user}});
-    // navigate ("/favourite/metro" ,{state : {user : user}});
-    // navigate ("/favourite/artworks" ,{state : { user : user}});
-   
-   //    navigate("/favourite");
+              setIsValid(true);
+            loggedUser = user;
+            //  setLoggedInUser(loggedUser);
+            //  setIsLoggedIn(true);
     
+          //    navigate ("/favourite" ,{state : { user : user}});
+
     }catch(err){
       const loggedUser = user[0];
       setLoggedInUser(loggedUser);
@@ -55,9 +44,24 @@ const Login = (props) =>{
     }
  
   }
- 
-  console.log('username',username);
+  const handleButtonSubmit = (e) =>{
+
+    const validUser = ['mala','peter','smith'];
+    if (validUser.includes(user)){
+     console.log(user,'is valid');
+     navigate ("/favourite" ,{state : { user : user}});
+    // return user;
+    }
+    else {
+     console.log(user,'is not valid');
+     setWarning('user is invalid');
+    // return false;
+     
+    }
   
+    };
+
+   
 
   return (
     <>
@@ -91,7 +95,8 @@ const Login = (props) =>{
         </>}
 
         <br />
-        <Button variant="primary" className="pull-right" type="submit">Login</Button>
+        <Button variant="primary" className="pull-right" type="submit" onClick={handleButtonSubmit}>Login</Button>
+       
         
       </Form>
     </>

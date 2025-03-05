@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function FavouritArtWorkData() {
  
-  const favouriteArtworkData = [{name:"mala",artworkObjects:[8427,197508]} ,
-                             {name:"smith",artworkObjects:[35720,20029]},
-                             {name:"peter",artworkObjects:[112885,97390]}];
+  const favouriteArtworkData = [{name:"mala",artworkObjects:[8427,197508,18421,20029]} ,
+                             {name:"smith",artworkObjects:[35720,20029,35720,796]},
+                             {name:"peter",artworkObjects:[112885,97390,9400,918]}];
 
     const [favouritesList,setFavouritesList] =useState([])   ; 
     const navigate = useNavigate();
@@ -26,15 +26,15 @@ export default function FavouritArtWorkData() {
         loggedInUser1 = location.state.user;
      }
     };
-    let newData = [];
-    let indexData = 0;
-    for (let i=0; i<3; i++){
-     if (favouriteArtworkData[i].name === loggedInUser1)
-     {
-         newData = favouriteArtworkData[i].artworkObjects;
-         indexData = i;
-     }
-    };
+    // let newData = [];
+    // let indexData = 0;
+    // for (let i=0; i<3; i++){
+    //  if (favouriteArtworkData[i].name === loggedInUser1)
+    //  {
+    //      newData = favouriteArtworkData[i].artworkObjects;
+    //      indexData = i;
+    //  }
+    // };
 
     const handleFavData = (e) =>{
     
@@ -48,14 +48,17 @@ const handleHome = (e) =>{
 };
 
     
-    console.log('logged in user in fav artwork data',loggedInUser1);
-    console.log('new data ',newData);
+    // console.log('logged in user in fav artwork data',loggedInUser1);
+    // console.log('new data ',newData);
  
 
    useEffect(() =>{
-    const data1= favouriteArtworkData[indexData].artworkObjects;
-    console.log('data1',data1);
-    setFavouritesList(data1)  ; 
+    // const data1= favouriteArtworkData[indexData].artworkObjects;
+    // console.log('data1',data1);
+    // setFavouritesList(data1)  ; 
+    const newData1 = favouriteArtworkData.filter(favData => favData.name=== loggedInUser1);
+    const favList = newData1[0].artworkObjects;
+    setFavouritesList(favList)  ; 
        
       },[]);
 
@@ -80,7 +83,9 @@ const handleHome = (e) =>{
     } else {
       return (
         <>
-        <p>Favourite Artworks </p>
+       
+        <h3>Favourite Artworks </h3>
+        <h4>Logged in User : {loggedInUser1}</h4>
           <Row className="gy-4">
             {favouritesList?.map((currentObjectID, index) => (
               <Col lg={3} key={currentObjectID}>
@@ -89,9 +94,11 @@ const handleHome = (e) =>{
               </Col>
             ))}
           </Row>
+          <br/>
           <Row>
+         
             <Col>
-            <Button onClick={handleFavData}> Favourite Data page </Button>
+            <Button onClick={handleFavData}> Search Page </Button>
             </Col>
             <Col>
             <Button onClick={handleHome}>Home </Button>

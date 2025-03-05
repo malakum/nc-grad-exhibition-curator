@@ -6,6 +6,8 @@ import  Row  from "react-bootstrap/Row";
  import { useLocation } from "react-router-dom";
  import { getMusObjects } from "../../utils/api";
 import AdvancedSearch from "./AdvancedSearch";
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 const MuseumObjects = () =>{
 
@@ -16,18 +18,34 @@ const MuseumObjects = () =>{
     const [currentPage, setCurrentPage] = useState(1);
     const [departmentId,setDepartmentId] = useState();
     const [isHighlight,setIsHighlight] = useState(false);
+    const navigate = useNavigate();
     const location = useLocation();
     let q = 'sunflower';
     let data1 ='';
     let buttonQuery ='';
     const allFilteredData =[];
-   
+    let loggedInUser1 = '';
+   console.log('location state inside museum',location.state);
     if (location.state){
        if (location.state.searchField){
            q = location.state.searchField;
         }
+        if (location.state.loggedInUser){
+          loggedInUser1 = location.state.loggedInUser;
+       }
+       if (location.state.user){
+         loggedInUser1 = location.state.user;
       }
+      };
+
+      const handleFavData = (e) =>{
+    
+        navigate ("/favourite",{state : { loggedInUser1 : loggedInUser1}});
   
+  };
+
+     
+   
         function previousPage(){
             if(page > 1){
                 setPage(page=>page-1);
@@ -58,8 +76,7 @@ const MuseumObjects = () =>{
 
         const getPostData = async (q,departmentId,isHighlight) => {
           const query = [];
-         // if (departmentId) query.push(`departmentId=${departmentId}`);
-         // if (isHighlight) query.push(`isHighlight=${isHighlight}`);
+        
           if (q) query.push(`q=${q}`);
         
           const queryStringMuseum = query.length ? `?${query.join("&")}` : "";
@@ -71,30 +88,19 @@ const MuseumObjects = () =>{
           setMuseumObjects(res.data);
         }
       
+      
 
     useEffect(() =>{
       getPostData(q,departmentId,isHighlight);
     },[q,departmentId,isHighlight]);
 
-  // useEffect(() => {
-  //   fetchMusObjects(1,q,false).then((museumObjectsFromApi) => {
-  //   console.log('taglist from api'+museumObjectsFromApi);
-  //     setMuseumObjects(museumObjectsFromApi);
-  //   });
-  // }, [q]);
-
-  
+    
   if (!museumObjects) {
     return <p>Loading...</p>;
   };
  
-  console.log('museum object total',museumObjects.total);
-  console.log('museum object is', museumObjects.objectIDs);
   let totalObjectsNumber = museumObjects.total;
-  console.log('total object',totalObjectsNumber);
- 
-  let total_page = totalObjectsNumber/PER_PAGE;
-  console.log('total page',total_page);
+   let total_page = totalObjectsNumber/PER_PAGE;
  
  if (totalObjectsNumber >= 1){
   
@@ -109,7 +115,8 @@ const MuseumObjects = () =>{
   }
 
   if (museumObjects ){
-    if (museumObjects.total==0){
+    if (museumObjects.total===0){
+      console.log('no data');
              return (
         <>
             <Row className="gy-4">
@@ -117,6 +124,12 @@ const MuseumObjects = () =>{
                         <h4>Nothing Here</h4><br/>
                         Try searching for something else
              </Row>
+             <Row>
+            <Col>
+            <Button onClick={handleFavData}> Search Page </Button>
+            </Col>
+           
+          </Row>
         </>);
     }
     
@@ -126,9 +139,10 @@ const MuseumObjects = () =>{
     return ( <>
             
          <h2> MuseumObjects</h2>
+         <h3>Logged in User : {loggedInUser1}</h3>
          
          <AdvancedSearch getData={getData}/>
-         <h3>Total Museum Objects:  {museumObjects.total}</h3>
+         <h4>Total Museum Objects:  {museumObjects.total}</h4>
                          
       <Row className="gy-4">
                      {/* {museumObjects.objectIDs.map((objectID,index)=>(  */}
@@ -146,6 +160,13 @@ const MuseumObjects = () =>{
                         </Pagination>
                     </Col>
                 </Row>
+
+                <Row>
+            <Col>
+            <Button onClick={handleFavData}> Search Page </Button>
+            </Col>
+           
+          </Row>
 
     </>)
 }

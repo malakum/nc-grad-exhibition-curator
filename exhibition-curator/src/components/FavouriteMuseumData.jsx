@@ -10,8 +10,8 @@ import { useLocation } from "react-router-dom";
 export default function FavouritMuseumData() {
  
   const favouriteMuseumData = [{name:"mala",museumObjects:[110,220,333,444]} ,
-                             {name:"smith",museumObjects:[220,120]},
-                             {name:"peter",museumObjects:[330,120]}];
+                             {name:"smith",museumObjects:[220,120,707887,485308]},
+                             {name:"peter",museumObjects:[334,120,363282]}];
 
     const [favouritesList,setFavouritesList] =useState([])   ; 
 
@@ -29,19 +29,7 @@ export default function FavouritMuseumData() {
         loggedInUser1 = location.state.user;
      }
      };
-     let newData = [];
-     let indexData = 0;
-     for (let i=0; i<3; i++){
-      if (favouriteMuseumData[i].name === loggedInUser1)
-      {
-          newData = favouriteMuseumData[i].museumObjects;
-          indexData = i;
-      }
-     };
-     
-     console.log('logged in user in fav museum data',loggedInUser1);
-     console.log('new data ',newData);
-
+    
      const handleFavData = (e) =>{
     
       navigate ("/favourite",{state : { loggedInUser1 : loggedInUser1}});
@@ -54,16 +42,13 @@ const handleHome = (e) =>{
 };
 
     useEffect(() =>{
-      const data1= favouriteMuseumData[indexData].museumObjects;
-      console.log(data1);
-      setFavouritesList(data1)  ; 
+      const newData1 = favouriteMuseumData.filter(favData => favData.name=== loggedInUser1);
+      const favList = newData1[0].museumObjects;
+      setFavouritesList(favList)  ; 
          
         },[]);
                   
-   
-
-   console.log('favourite list inside museum favourite',favouritesList);
-  if(!favouritesList) return null;
+   if(!favouritesList) return null;
 
   if (favouritesList) {
     if (favouritesList?.length == 0) {
@@ -84,8 +69,9 @@ const handleHome = (e) =>{
     } else {
       return (
         <>
-          <p>Logged in User : {loggedInUser1}</p>
-          <p>Favourite Metro Museum Objects</p>
+        <h3>Favourite Metro Museum Objects</h3>
+          <h4>Logged in User : {loggedInUser1}</h4>
+          
           <Row className="gy-4">
             {favouritesList?.map((currentObjectID, index) => (
               <Col lg={3} key={currentObjectID}>
@@ -94,9 +80,11 @@ const handleHome = (e) =>{
               </Col>
             ))}
           </Row>
+          <br/>
           <Row>
+         
             <Col>
-            <Button onClick={handleFavData}> Favourite Data page </Button>
+            <Button onClick={handleFavData}> Search Page </Button>
             </Col>
             <Col>
             <Button onClick={handleHome}>Home </Button>

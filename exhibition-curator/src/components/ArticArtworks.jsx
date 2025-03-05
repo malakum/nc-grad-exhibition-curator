@@ -4,6 +4,8 @@ import ArticArtworkCard from "./ArticArtworkCard";
 import  Row  from "react-bootstrap/Row";
  import Pagination from 'react-bootstrap/Pagination';
  import  Col  from "react-bootstrap/Col";
+ import Button from 'react-bootstrap/Button';
+ import { useNavigate } from "react-router-dom";
 
  import { useLocation } from "react-router-dom";
 
@@ -16,15 +18,30 @@ const ArticArtworks = () =>{
     const [page, setPage] = useState(1);
     const PER_PAGE = 8; // should not be more then 99
     const limit = PER_PAGE; // should not be more than 99
-   
+    const navigate = useNavigate();
     const location = useLocation();
     let q ='sunflower';
+    let loggedInUser1 = '';
+
     if (location.state){
        if (location.state.searchField ){
            q = location.state.searchField;
            console.log('q inside artic artworks',q);
            }
+
+           if (location.state.loggedInUser){
+            loggedInUser1 = location.state.loggedInUser;
+         }
+         if (location.state.user){
+           loggedInUser1 = location.state.user;
+        }
     };
+
+          const handleFavData = (e) =>{
+    
+        navigate ("/favourite",{state : { loggedInUser1 : loggedInUser1}});
+  
+  };
      
     function previousPage(){
         if(page > 1){
@@ -37,7 +54,9 @@ const ArticArtworks = () =>{
         if (page <5){
             setPage(page=>page+1);
         }
-    }
+    };
+
+   
     
 
   useEffect(() => {
@@ -56,6 +75,7 @@ const ArticArtworks = () =>{
     return ( <>
             
          <h2> ArticArtworks</h2>
+         <h3>Logged in User : {loggedInUser1}</h3>
              
       <Row className="gy-4">
                     {artworks.map((artwork,index)=>(
@@ -71,7 +91,9 @@ const ArticArtworks = () =>{
                         </Pagination>
                     </Col>
                 </Row>
-               
+                <Col>
+                     <Button onClick={handleFavData}> Search Page </Button>
+                 </Col>
     </>)
 }
 export default ArticArtworks;

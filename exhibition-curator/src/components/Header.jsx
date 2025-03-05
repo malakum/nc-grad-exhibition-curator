@@ -41,8 +41,8 @@ const Header = () =>{
       
     return ( <>
          
-         <h1> Art Exhibition Curator</h1>
-         <Form className="d-flex" onSubmit={submitForm}>Search:
+         <h1>------ Art Exhibition Curator--------</h1>
+         {/* <Form className="d-flex" onSubmit={submitForm}>Search:
                   <Form.Control
                   type="search"
                   placeholder="Search"
@@ -51,8 +51,7 @@ const Header = () =>{
                   onChange={(e) => {setSearchField(e.target.value)}}
                   />
                    
-                  {/* <Button type="submit" variant="success">Search</Button>
-                   */}
+                 
                </Form>
                <Form.Text className="text-muted">
                Search String (ie: &quot;cat&quot;, &quot;mouse&quot;, &quot;sunflower&quot;, &quot;table&quot;, &quot;chair&quot;, etc.)
@@ -70,7 +69,7 @@ const Header = () =>{
             </Col>
           </Row>
           <p>......................</p>
-            </div>
+            </div> */}
 
     </>)
 }

@@ -33,10 +33,10 @@ export default function MainNav() {
                                          to={`/`} 
                                           > Home
                                     </Link>
-               <Link className="nav-link"
+               {/* <Link className="nav-link"
                                          to={`/search`} 
                                           > Advance Search
-                                    </Link>
+                                    </Link> */}
                   
                                   
                </Nav>

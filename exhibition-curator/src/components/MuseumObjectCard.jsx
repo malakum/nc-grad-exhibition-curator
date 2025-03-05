@@ -20,8 +20,9 @@ const MuseumObjectCard = ({objectID}) =>{
             setMuseumObjectCard(museumObjectDetailFromApi);
          })
          .catch((err) => {
+          console.log('error in museum card',err);
          // setIsLoading(false);
-            setError(err.response.data);
+           // setError(err.response.data);
         })
        }, [objectID])}
     //     useEffect(() => {
@@ -77,6 +78,7 @@ const MuseumObjectCard = ({objectID}) =>{
   </Card.Body>
 </Card>
 </div>
+
 </>
      );   
     
