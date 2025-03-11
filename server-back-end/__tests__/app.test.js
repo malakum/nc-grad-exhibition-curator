@@ -162,15 +162,7 @@ describe("/api/favobjects/:fav_user", () => {
       });
   });
   
-    // test("DELETE:204 status 204 and no content.", () => {
-    //   return request(app)
-    //     .delete("/api/fav_objects/1")
-    //     .expect(204)
-    //     .then(({ body }) => {
-    //       const  favobject  = body;
-    //       expect(favobject).toEqual({});
-    //     });
-    // });   
+   
   });
 
   describe("/api/favobjectsmetro/:fav_user", () => {
@@ -186,6 +178,7 @@ describe("/api/favobjects/:fav_user", () => {
          // expect(favObject.rows).toHaveLength(3);
          
           favObject.rows.forEach((fav) => {
+          //  console.log(fav);
           expect(fav).toMatchObject({
             fav_id : expect.any(Number),
             fav_flag_id : expect.any(String),
@@ -199,41 +192,33 @@ describe("/api/favobjects/:fav_user", () => {
         });
     });
   
-    const newFavobject = {
-      fav_flag_id :"M",
-      fav_object :2222,
-      fav_user :"mala"
-      };
-    test("POST:201 post or save object for passed logged in user to the client", () => {
-      return request(app)
-        .post("/api/favobjectsmetro/2222")
-        .send(newFavobject)
-        .expect(201)
-        .then(({ body }) => {
+    // const newFavobject = {
+    //   fav_flag_id :"M",
+    //   fav_object :2222,
+    //   fav_user :"mala"
+    //   };
+    // test("POST:201 post or save object for passed logged in user to the client", () => {
+    //   return request(app)
+    //     .post("/api/favobjectsmetro/2222")
+    //     .send(newFavobject)
+    //     .expect(201)
+    //     .then(({ body }) => {
        
-          const { favObject } = body;
+    //       const { favObject } = body;
         
-            expect(favObject).toMatchObject({
-              fav_id: expect.any(Number),
-              fav_flag_id: 'M',
-              fav_object: 2222,
-              fav_user :'mala',
-              created_at: expect.any(String)
+    //         expect(favObject).toMatchObject({
+    //           fav_id: expect.any(Number),
+    //           fav_flag_id: 'M',
+    //           fav_object: 2222,
+    //           fav_user :'mala',
+    //           created_at: expect.any(String)
               
-              });
+    //           });
          
-        });
-    });
+    //     });
+    // });
     
-      // test("DELETE:204 status 204 and no content.", () => {
-      //   return request(app)
-      //     .delete("/api/fav_objects/1")
-      //     .expect(204)
-      //     .then(({ body }) => {
-      //       const  favobject  = body;
-      //       expect(favobject).toEqual({});
-      //     });
-      // });   
+    
     });
 
     describe("/api/favobjectsart/:fav_user", () => {
@@ -262,39 +247,42 @@ describe("/api/favobjects/:fav_user", () => {
           });
       });
     
-      const newFavobject = {
-        fav_flag_id :"A",
-        fav_object :3333,
-        fav_user :"mala"
-        };
-      test("POST:201 post or save object for passed logged in user to the client", () => {
-        return request(app)
-          .post("/api/favobjectsart/3333")
-          .send(newFavobject)
-          .expect(201)
-          .then(({ body }) => {
+      // const newFavobject = {
+      //   fav_flag_id :"A",
+      //   fav_object :3333,
+      //   fav_user :"mala"
+      //   };
+      // test("POST:201 post or save object for passed logged in user to the client", () => {
+      //   return request(app)
+      //     .post("/api/favobjectsart/3333")
+      //     .send(newFavobject)
+      //     .expect(201)
+      //     .then(({ body }) => {
          
-            const { favObject } = body;
+      //       const { favObject } = body;
           
-              expect(favObject).toMatchObject({
-                fav_id: expect.any(Number),
-                fav_flag_id: 'A',
-                fav_object: 3333,
-                fav_user :'mala',
-                created_at: expect.any(String)
+      //         expect(favObject).toMatchObject({
+      //           fav_id: expect.any(Number),
+      //           fav_flag_id: 'A',
+      //           fav_object: 3333,
+      //           fav_user :'mala',
+      //           created_at: expect.any(String)
                 
-                });
+      //           });
            
-          });
-      });
-      
-        // test("DELETE:204 status 204 and no content.", () => {
-        //   return request(app)
-        //     .delete("/api/fav_objects/1")
-        //     .expect(204)
-        //     .then(({ body }) => {
-        //       const  favobject  = body;
-        //       expect(favobject).toEqual({});
-        //     });
-        // });   
-      });
+      //     });
+      // });
+    });
+
+    // describe("/api/favid/:fav_id", () => {
+    //      test("DELETE:204 status 204 and no content.", () => {
+    //       return request(app)
+    //         .delete("/api/favid/1")
+    //         .expect(204)
+    //         .then(({ body }) => {
+    //           console.log(body);
+    //           const  favobject  = body;
+    //           expect(favobject).toEqual({});
+    //         });
+    //     });   
+    //   });

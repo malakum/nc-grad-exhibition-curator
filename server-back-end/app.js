@@ -11,9 +11,8 @@ const { getUsers, postUser , patchUserByUserName, deleteUserByUserName} = requir
 
 const { getFavobjectsByUser,postFavobjectByObjectId,
   getFavobjectsMetroByUser,postFavobjectMetroByObjectId,
-  getFavobjectsArtByUser,postFavobjectArtByObjectId,
-        
-  deleteFavobjectByFavId } = require("./controllers/favobjects.controllers.js");
+  getFavobjectsArtByUser,postFavobjectArtByObjectId, deleteFavobjectByFavId ,
+   } = require("./controllers/favobjects.controllers.js");
 
 //app.use(cors());
 
@@ -21,20 +20,20 @@ app.use(express.json());
 
 app.get('/api', getAllApi);
 
-app.post('/api/users/:user_name', postUser);
 app.get('/api/users', getUsers);
-
+app.post('/api/users/:user_name', postUser);
 app.patch('/api/users/:user_name', patchUserByUserName);
-app.delete('/api/users/:user_name', deleteUserByUserName);
 
-app.post('/api/favobjects/:fav_object', postFavobjectByObjectId);
 app.get('/api/favobjects/:fav_user', getFavobjectsByUser);
-app.post('/api/favobjectsmetro/:fav_object', postFavobjectMetroByObjectId);
 app.get('/api/favobjectsmetro/:fav_user', getFavobjectsMetroByUser);
-app.post('/api/favobjectsart/:fav_object', postFavobjectArtByObjectId);
 app.get('/api/favobjectsart/:fav_user', getFavobjectsArtByUser);
 
-//app.delete('/api/favobjects/:fav_id/delete', deleteFavobjectByFavId);
+app.post('/api/favobjects/:fav_object', postFavobjectByObjectId);
+//app.post('/api/favobjectsmetro/:fav_object', postFavobjectMetroByObjectId);
+//app.post('/api/favobjectsart/:fav_object', postFavobjectArtByObjectId);
+
+app.delete('/api/users/:user_name', deleteUserByUserName);
+//app.delete('/api/favid/:fav_id', deleteFavobjectByFavId);
 
 //app.delete('/api/favobject'  ,deleteFavobjectByFavId);
 
