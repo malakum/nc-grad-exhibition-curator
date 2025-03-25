@@ -1,18 +1,14 @@
 import { Card, Form, Alert, Button } from "react-bootstrap";
-import { authenticateUser } from "../lib/authenticate";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/userProvider";
+import { UserContext } from "../contexts/User";
 
 const Login = (props) =>{
   const { setLoggedInUser, setIsLoggedIn } = useContext(UserContext);
   const [users, setUsers] = useState([]);
 
- const [username, setUsername] = useState('');
   const [isValid, setIsValid] = useState(false);
-
-  const [error, setError] = useState(null);
 
   const [warning, setWarning] = useState("");
   const [user, setUser] = useState("");
@@ -21,29 +17,7 @@ const Login = (props) =>{
  const location = useLocation();
  let loggedUser = '';
 
- //console.log('log in user in login page',setLoggedInUser, setIsLoggedIn);
-
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    try{
-      await authenticateUser(user, password);
-              setIsValid(true);
-            loggedUser = user;
-            //  setLoggedInUser(loggedUser);
-            //  setIsLoggedIn(true);
-    
-          //    navigate ("/favourite" ,{state : { user : user}});
-
-    }catch(err){
-      const loggedUser = user[0];
-      setLoggedInUser(loggedUser);
-      setIsLoggedIn(true);
-     setWarning(err.message);
-    }
  
-  }
   const handleButtonSubmit = (e) =>{
 
     const validUser = ['mala','peter','smith'];

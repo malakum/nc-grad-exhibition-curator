@@ -76,6 +76,11 @@ const ArticArtworks = () =>{
             
          <h2> ArticArtworks</h2>
          <h3>Logged in User : {loggedInUser1}</h3>
+         <Row>
+          <Col>
+            <Button onClick={handleFavData}> Search Page </Button>
+            </Col> 
+            </Row>
              
       <Row className="gy-4">
                     {artworks.map((artwork,index)=>(
@@ -91,9 +96,7 @@ const ArticArtworks = () =>{
                         </Pagination>
                     </Col>
                 </Row>
-                <Col>
-                     <Button onClick={handleFavData}> Search Page </Button>
-                 </Col>
+              
     </>)
 }
 export default ArticArtworks;

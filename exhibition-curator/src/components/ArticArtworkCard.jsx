@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { getArtworkDetail } from "../../utils/api";
+import { UserContext } from "../contexts/User";
 
 const ArticArtworkCard = ({artwork_id}) =>{
 
     const [artworkCard, setArtworkCard] = useState(null);
+    const { loggedInUser, isLoggedIn } = useContext(UserContext);
   
-
    
     if (artwork_id){
         useEffect(() => {
           // fetchArticArtworkById
           getArtworkDetail(artwork_id).
           then((dataFromApi) => {
-                 // console.log('Museum object Detail from api'+dataFromApi);
+         
                    setArtworkCard(dataFromApi);
             })
             .catch((err) => {
-              // setIsLoading(false);
-                 setError(err.response.data);
+                     setError(err.response.data);
              })
     }, [artwork_id])}
     else { 
@@ -58,6 +58,7 @@ const ArticArtworkCard = ({artwork_id}) =>{
                                                > Link for Artwork detail
                                                 
          </Link>
+         
     </Card.Text>
   </Card.Body>
 </Card>

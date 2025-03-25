@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import { getMusObjects } from '../../utils/api';
+
 
 const  AdvancedSearch =(props) => {
 
@@ -12,11 +12,11 @@ const  AdvancedSearch =(props) => {
 //useform
 const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
-        searchBy: '',
+        // searchBy: '',
         geoLocation: '',
         medium: '',
-        isOnView: false,
-        isHighlight: false,
+        // isOnView: false,
+        // isHighlight: false,
         departmentId :''
         // q: ''
     },
@@ -26,12 +26,12 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
 
   useEffect(() => {
     let data = {
-      searchBy: "title",
+      // searchBy: "title",
       geoLocation: "",
       medium: "",
-      isOnView: false,
-      isHighlight: false,
-      departmentId :1
+      // isOnView: false,
+      // isHighlight: false,
+      departmentId : 1
       // q: ""
     }
 
@@ -44,8 +44,7 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
   //async function 
   async function submitForm(data) {
     let queryString = "";
-   // queryString +=`${data.searchBy}=true`
-    if(data.geoLocation){
+       if(data.geoLocation){
       queryString += `&geoLocation=${data.geoLocation}`
     }
    
@@ -77,6 +76,8 @@ const { register, handleSubmit, setValue, formState: { errors } } = useForm({
               <Form.Control type="number" placeholder="" name="departmentId" {...register("departmentId")}/>
               <Form.Text className="text-muted">
               Department Number  (ie 1,2,3,4,5, upto 13 )
+              1- The American Wing , 3- Ancient Near Eastern ,4-Arms and armur ,
+              6- Asian arts ,10-"Egyptian art" ,11- "European painting"
             </Form.Text>
             </Form.Group>
           </Col>

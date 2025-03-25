@@ -140,9 +140,16 @@ const MuseumObjects = () =>{
             
          <h2> MuseumObjects</h2>
          <h3>Logged in User : {loggedInUser1}</h3>
+
          
-         <AdvancedSearch getData={getData}/>
+         {/* <AdvancedSearch getData={getData}/> */}
+        
          <h4>Total Museum Objects:  {museumObjects.total}</h4>
+         <Row>
+          <Col>
+            <Button onClick={handleFavData}> Search Page </Button>
+            </Col> 
+            </Row>
                          
       <Row className="gy-4">
                      {/* {museumObjects.objectIDs.map((objectID,index)=>(  */}
@@ -161,12 +168,12 @@ const MuseumObjects = () =>{
                     </Col>
                 </Row>
 
-                <Row>
+                {/* <Row>
             <Col>
             <Button onClick={handleFavData}> Search Page </Button>
             </Col>
            
-          </Row>
+          </Row> */}
 
     </>)
 }

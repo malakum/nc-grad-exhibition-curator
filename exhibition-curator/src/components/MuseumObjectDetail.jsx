@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext,useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { getMusObjectDetail } from "../../utils/api";
+import { UserContext } from "../contexts/User";
+import { supabase } from "../lib/supabaseClient";
+import { Row , Col } from "react-bootstrap";
 
 
 
@@ -10,32 +13,74 @@ import { getMusObjectDetail } from "../../utils/api";
 
 const MuseumObjectDetail = () =>{
 
+  const { loggedInUser, isLoggedIn } = useContext(UserContext);
+
+  console.log('loggedInUser isLoggedIn',loggedInUser, isLoggedIn);
+ 
+
     const [museumObjectDetail, setMuseumObjectDetail] = useState(null);
 
     const { objectID } =useParams();   
+    const navigate = useNavigate();
 
     function onClickURL (url){ window.open(url,'_blank')};
  
-  //  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+  
    
    
     const [showAdded, setShowAdded] = useState(false);
+    const handleFavData = (e) =>{
+    
+      navigate ("/favourite",{state : { loggedInUser : loggedInUser}});
 
-    //using the useEffect hook
-    // useEffect(()=>{
-    //     setShowAdded(favouritesList?.includes(props.objectID))
-    // }, [favouritesList])
-  //  let newShowAdded =favouritesList?.includes(objectID);
+};
 
-
-    //async- await function favouritesClicked
+    
     async function favouritesClickedMuseum() {
         if(showAdded){
-          //  setFavouritesList(await removeFromFavourites(objectID))
+         
             setShowAdded(false)
         }
         else{
+
+          const newFavobject = {
+            fav_flag_id :"M",
+            fav_object :objectID,
+            fav_user : loggedInUser
+            };
           //  setFavouritesList(await addToFavourites(objectID))
+        //  const  newFavobject = {fav_object : objectID ,fav_flag :'M' , fav_user :loggedInUser};
+       
+          console.log('fav  metro museum object added',newFavobject);
+           const { data , error} = await supabase
+                                        .from("favmetro")
+                                               .select("fav_object")
+                                               .eq("fav_user",loggedInUser)
+                                               .eq("fav_object",objectID);
+          
+          if (error){
+                      console.log ('error1',error);
+                                                        };
+          if (data){
+                                                console.log('data1',data);
+                                              }
+          if (!data || data.length===0 )
+            {
+
+          const { data2, error2 } = await supabase
+                      .from('favmetro')
+                      .insert([{ fav_object: objectID , fav_user: loggedInUser }])
+                      .select("*")
+                      .single();
+                  
+                    if (error2) 
+                      {console.error('Error inserting item:', error2.message);
+                      }
+                    else {
+                      console.log('Item inserted:', data2);
+                    }
+                  }
+                          //  posFavobject(fav_object, newFavobject);
             setShowAdded(true)
         }
     }
@@ -52,12 +97,7 @@ const MuseumObjectDetail = () =>{
                  setError(err.response.data);
              })
   }, [objectID])}
-    //     useEffect(() => {
-    //       fetchMusObjectDetail(objectID).then((museumObjectDetailFromApi) => {
-    //   console.log('Museum object Detail from api'+museumObjectDetailFromApi);
-    //     setMuseumObjectDetail(museumObjectDetailFromApi);
-    //   });
-    // }, [objectID])}
+   
     else { 
       return <p> Object Id is required..</p>
     }
@@ -70,6 +110,11 @@ const MuseumObjectDetail = () =>{
     
      return (<div      
     > Object Detail
+    <Row>
+          <Col>
+            <Button onClick={handleFavData}> Search Page </Button>
+            </Col> 
+            </Row>
     <Card>
     
   {museumObjectDetail.primaryImage && (
@@ -123,6 +168,12 @@ const MuseumObjectDetail = () =>{
     </Card.Text>
   </Card.Body>
 </Card>
+{/* <Row>
+            <Col>
+            <Button onClick={handleFavData}> Search Page </Button>
+            </Col>
+           
+          </Row> */}
        
        
      </div>

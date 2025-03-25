@@ -9,7 +9,7 @@ const museumApi = axios.create({
   });
 
   export const getMusObjects =  async(queryStringMuseum) => {
-         console.log(queryStringMuseum);
+         console.log('query string museum inside api',queryStringMuseum);
        return museumApi.get(`/search${queryStringMuseum}`);
     
      
@@ -29,7 +29,52 @@ const museumApi = axios.create({
             return res.data.data;})
   }
 
+ 
 
+//   export const getFavobjectsMetro = (fav_user) => {
+//     return favApi.get('/favobjectsmetro/${fav_user}').then(res =>{
+//         return res.data
+//     })
+//   }
+  
+//   export const getFavobjectsArt = (fav_user) => {
+//     return favApi.get('/favobjectsart/${fav_user}').then(res =>{
+//         return res.data
+//     })
+//   }
+
+
+
+//     export const posFavobject = (fav_object, newFavobject) => {
+//     return newsApi.post(`/favobjects/${fav_object}`, newFavobject).then(res => {
+//         return res.data
+//     })
+// }
+
+// export const deleteFavobject = (fav_id) => {
+//   return newsApi.delete(`/favid/${fav_id}`).then(res => {
+//       return res.status
+//   })
+// }
+
+
+//   export const getComments = (article_id) => {
+//     return newsApi.get(`/articles/${article_id}/comments`).then(res => {
+//         return res.data.comments
+//     })
+// }
+
+//   export const postComment = (article_id, newComment) => {
+//     return newsApi.post(`/articles/${article_id}/comments`, newComment).then(res => {
+//         return res.data.comment
+//     })
+// }
+
+// export const deleteComment = (comment_id) => {
+//   return newsApi.delete(`/comments/${comment_id}`).then(res => {
+//       return res.status
+//   })
+// }
 
  
 async function fetchArticArtworks(q,page,limit,per_page) {

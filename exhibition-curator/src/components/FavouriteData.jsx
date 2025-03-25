@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { Row,Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
 
 
 const FavouriteData = () =>{
@@ -16,16 +17,24 @@ const FavouriteData = () =>{
     let loggedInUser = '';
     if (location.state){
      if (location.state.user){
-         loggedInUser = location.state.user;
+        if (location.state.user.name){
+         loggedInUser = location.state.user.name;
+        }
+        else {
+             loggedInUser = location.state.user;
+        }
       }
       if (location.state.loggedInUser1){
         loggedInUser = location.state.loggedInUser1;
-     }
+      }
+      if (location.state.loggedInUser){
+        loggedInUser = location.state.loggedInUser;
+      }
 
     };
     
    
-     //submitting Form async fucntion
+    
      const submitForm = async (e) => {
       e.preventDefault()
      
@@ -66,6 +75,11 @@ const FavouriteData = () =>{
                      navigate ("/favourite/artworks" ,{state : { loggedInUser : loggedInUser}});
       
       };
+
+      const handleSignOut = async () => {
+                 await supabase.auth.signOut();
+                 navigate("/");
+                  };
        
     return ( <>
      <h2>Search Page</h2>
@@ -78,9 +92,7 @@ const FavouriteData = () =>{
                   aria-label="Search"
                   onChange={(e) => {setSearchField(e.target.value)}}
                   />
-                   
-                  {/* <Button type="submit" variant="success">Search</Button>
-                   */}
+                
                </Form>
                <Form.Text className="text-muted">
                Search String (ie: &quot;cat&quot;, &quot;mouse&quot;, &quot;sunflower&quot;, &quot;table&quot;, &quot;chair&quot;, etc.)
@@ -94,8 +106,9 @@ const FavouriteData = () =>{
             <Col> 
             <Button onClick={handleArtworks}> Artic Artworks </Button>
             </Col>
-            <Col>
-            <Button onClick={handleHome}>Home Page</Button>
+          
+            <Col> 
+                  <Button onClick={handleSignOut}>Sign Out</Button>
             </Col>
           </Row>
           
@@ -110,9 +123,9 @@ const FavouriteData = () =>{
             <Col> 
             <Button onClick={handleArtworksFav}> Favourite-Artic Artworks </Button>
             </Col>
-            {/* <Col>
-            <Button onClick={handleHome}>Home </Button>
-            </Col> */}
+
+           
+           
           </Row>
           <p>......................</p>
             </div>
