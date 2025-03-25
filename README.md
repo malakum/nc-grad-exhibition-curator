@@ -19,7 +19,7 @@ Secondly, To develop a modern, responsive user interface for searching and viewi
 
 ## Functionality
 
-To use the application, User fisrt select login page with valid user id . Here valid user id are mala ,peter and smith . then user can put some search criteria such as mouse ,sunflower etc and then press any one button to chechk data from two different Museum and then  App will render the output . Here user can select favourite data from museum and artworks.
+To use the application, User fisrt select login/Register page link . User enter valid email id and password and press Sign In button.. If user wants to create new userid , He/she enter email id and password and Sign Up. New user id will be created.  then user can put some search criteria such as mouse ,sunflower etc and then press any one button to chechk data from two different Museum and then  App will render the output . Here user can select favourite data from museum and artworks.
 
 ## Setup
 
@@ -49,7 +49,13 @@ you can install them by running these commands in terminal
 npm install react-router-dom
 npm i axios 
 npm install react-bootstrap bootstrap
+npm install @supabase/supabase-js
 
+## supabase client 
+Here user information and favourite data is saved in supabase. so you need to setup env for them
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+we are creating supabase client so baseURL and AnonKey is required here.
 
 
 ## Link
