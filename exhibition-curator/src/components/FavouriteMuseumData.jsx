@@ -32,6 +32,10 @@ export default function FavouritMuseumData() {
           }
         };
         console.log('logged in use in fev metro2',loggedInUser1);
+        console.log(loggedInUser1, typeof loggedInUser1)
+        if ( typeof loggedInUser1=== Object) {
+          loggedInUser1 ='';
+        }
   
      const handleFavData = (e) =>{
            navigate ("/favourite",{state : { loggedInUser1 : loggedInUser1}});

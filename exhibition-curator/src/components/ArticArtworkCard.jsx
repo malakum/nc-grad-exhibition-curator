@@ -8,7 +8,7 @@ import { UserContext } from "../contexts/User";
 const ArticArtworkCard = ({artwork_id}) =>{
 
     const [artworkCard, setArtworkCard] = useState(null);
-    const { loggedInUser, isLoggedIn } = useContext(UserContext);
+    
   
    
     if (artwork_id){

@@ -16,6 +16,7 @@ const ArticArtworkDetail = () =>{
   const [showAdded, setShowAdded] = useState(false);
   const navigate = useNavigate();
 
+  
   const handleFavData = (e) =>{
     
     navigate ("/favourite",{state : { loggedInUser : loggedInUser}});

@@ -12,26 +12,8 @@ const MuseumObjectCard = ({objectID}) =>{
 
     const [museumObjectCard, setMuseumObjectCard] = useState(null);
      const { loggedInUser, isLoggedIn } = useContext(UserContext);
-     console.log('user context',UserContext);
-     console.log('use context',useContext(UserContext));
-     console.log(loggedInUser);
-
-    //  const handleFavDelete = async () =>{
-    //    console.log('favobjects metro card',objectID);
-    //    console.log('logged in user',loggedInUser);
      
-    //    const { data , error } = await supabase
-    //                                   .from("favmetro")
-    //                                   .select("*")
-    //                                   .eq("fav_user",loggedInUser)
-    //                                    .eq("fav_object",objectID);
-    //    if (error){
-    //      console.log("Error selecting data fav metro card:", error);
-    //    }
-    //    else {
-    //      console.log("data selected fav metro card",data);
-    //    }
-    //  };
+
 
     if (objectID){
       useEffect(() => {

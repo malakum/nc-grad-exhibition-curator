@@ -37,6 +37,11 @@ const ArticArtworks = () =>{
         }
     };
 
+    console.log(loggedInUser1, typeof loggedInUser1)
+    if ( typeof loggedInUser1=== Object) {
+      loggedInUser1 ='';
+    }
+
           const handleFavData = (e) =>{
     
         navigate ("/favourite",{state : { loggedInUser1 : loggedInUser1}});

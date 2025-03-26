@@ -28,6 +28,10 @@ export default function FavouritArtWorkData() {
         loggedInUser1 = location.state.user;
      }
     };
+    console.log(loggedInUser1, typeof loggedInUser1)
+    if ( typeof loggedInUser1=== Object) {
+      loggedInUser1 ='';
+    }
    
     const handleFavData = (e) =>{
     

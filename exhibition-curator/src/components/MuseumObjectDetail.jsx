@@ -23,6 +23,7 @@ const MuseumObjectDetail = () =>{
     const { objectID } =useParams();   
     const navigate = useNavigate();
 
+    
     function onClickURL (url){ window.open(url,'_blank')};
  
   
@@ -43,15 +44,15 @@ const MuseumObjectDetail = () =>{
         }
         else{
 
-          const newFavobject = {
-            fav_flag_id :"M",
-            fav_object :objectID,
-            fav_user : loggedInUser
-            };
+          // const newFavobject = {
+          //   fav_flag_id :"M",
+          //   fav_object :objectID,
+          //   fav_user : loggedInUser
+          //   };
           //  setFavouritesList(await addToFavourites(objectID))
         //  const  newFavobject = {fav_object : objectID ,fav_flag :'M' , fav_user :loggedInUser};
        
-          console.log('fav  metro museum object added',newFavobject);
+          // console.log('fav  metro museum object added',newFavobject);
            const { data , error} = await supabase
                                         .from("favmetro")
                                                .select("fav_object")

@@ -64,7 +64,7 @@ useEffect (() => {
 <UserProvider>
         <MainNav />
          <Container>
-         <ThemeToggle />
+         {/* <ThemeToggle /> */}
          <Header />
         <Routes>
               <Route path="/" element={<MuseumMainPage />}></Route>

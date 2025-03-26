@@ -30,8 +30,13 @@ const FavouriteData = () =>{
       if (location.state.loggedInUser){
         loggedInUser = location.state.loggedInUser;
       }
-
+     
     };
+    console.log(loggedInUser, typeof loggedInUser)
+    if ( typeof loggedInUser=== Object) {
+      loggedInUser ='';
+    }
+
     
    
     
@@ -39,9 +44,7 @@ const FavouriteData = () =>{
       e.preventDefault()
      
      const  q= searchField;
-     console.log('searchfeild',searchField);
-     console.log('q',q);
-   
+      
       
    }
    const handleMetro = (e) =>{
@@ -58,11 +61,7 @@ const FavouriteData = () =>{
          navigate ("/artworks" ,{state : { searchField : searchField, loggedInUser : loggedInUser} });
    
    };
-   const handleHome = (e) =>{
-      
-         navigate ("/");
-         
-   };
+   
 
   const handleMetroFav = (e) =>{
      
